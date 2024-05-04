@@ -186,30 +186,30 @@ $mainValues = [
 ⚠️   نکته: در صورت وارد کردن به مقدار بالا احتمالا اکانت ساخته نشود و پنل x-ui گیر  کند",
     'send_positive_number'=>"لطفا عددی بزرگتر از 0 وارد   کنید",
     'buy_subscription_detail'=>"   نام پلن: PLAN-NAME
-        ➖➖➖➖➖➖➖
+        
        • قیمت پنل : PRICE
-        ➖➖➖➖➖➖➖
+        
        • توضیحات :
         DESCRIPTION
-        ➖➖➖➖➖➖➖",
+        ",
     'buy_much_subscription_detail'=>"   نام پلن: PLAN-NAME
         تعداد اکانت: ACCOUNT-COUNT
         قیمت پنل: PRICE
-        ➖➖➖➖➖➖➖
+      
        • قیمت کل : TOTAL-PRICE
-        ➖➖➖➖➖➖➖
+      
        • توضیحات :
         DESCRIPTION
-        ➖➖➖➖➖➖➖",
+        ",
     'buy_custom_subscription_detail'=>"   نام پلن: PLAN-NAME
         حجم اختصاصی: VOLUME GB
         مدت اختصاصی: DAYS  از
-        ➖➖➖➖➖➖➖
+        
        • قیمت پنل : PRICE
-        ➖➖➖➖➖➖➖
+       
        • توضیحات :
         DESCRIPTION
-        ➖➖➖➖➖➖➖",
+        ",
     "agents_list" => "   لیست نمایندگان:
 
 جهت مشاهده آمار فروش نمایندگان بر روی اسم نماینده کلیک کنید، همچنین میتوانید برای نماینده درصد تعیین   کنید یا آن را از لیست نمایندگان خارج   کنید",
@@ -218,7 +218,7 @@ $mainValues = [
 
 سمت راست درآمد و سمت چپ تعداد خرید نماینده می باشد',
     'send_config_remark'=>"لطفا ریمارک کانفیگ را وارد   کنید",
-    'forward_your_message'=>"لطفا پیام مورد نظر خود را به ربات فراارد   کنید",
+    'forward_your_message'=>"لطفا پیام مورد نظر خود را به ربات فروارد   کنید",
     "enter_ticket_title"=>"  لطفا موضوع تیکت را ارسال   کنید",
     "enter_ticket_description"=> "  لطفا متن و یا عکس تیکت را بصورت ساده و مختصر ارسال   کنید",
     "sent_config_to_user"=> '  کانفیگ ارسال شد
@@ -296,7 +296,7 @@ $buttonValues = [
     'bot_settings'=>'تنظیمات ربات',
     'tickets_list'=>'تیکت ها',
     'message_to_all'=>"ارسال پیام همگانی",
-    'forward_to_all'=>"فراارد پیام همگانی",
+    'forward_to_all'=>"فروارد پیام همگانی",
     'back_to_main'=>' برگرد به منوی اصلی',  
     'cart_to_cart'=>"کارت به کارت",
     'now_payment_gateway'=>"درگاه NowPayment",
