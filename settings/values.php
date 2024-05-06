@@ -102,7 +102,7 @@ $mainValues = [
   بعد از اینکه عضو شدید برای دکمه عضو شدم بزنید
 
 ",
-    'bot_is_updating'=> " ربات در حال ب ازرسانی می باشد ...",
+    'bot_is_updating'=> " ربات در حال بروزرسانی می باشد ...",
     'select_one_to_show_detail'=> '   یکی از   سرویس هاتو انتخاب  کنید و مشخصات کاملش را ببین :',
     'you_dont_have_config'=>'  هیچ سفارشی نداری   باید یک کانفیگ خریداری  کنیدی',
     'no_order_found'=> "موردی یافت نشد",
@@ -309,12 +309,12 @@ $buttonValues = [
     'declined' => 'رد شد',
     'back_button'=> "برگشت ",
     'renew_connection_link'=>" قطع دسترسی و لینک جدید",
-    'update_config_connection'=>" ب ازرسانی کانفیگ",
+    'update_config_connection'=>" بروزرسانی کانفیگ",
     'increase_config_volume'=>" افزایش حجم   سرویس",
     'increase_config_days'=>" افزایش زمان   سرویس",
     'renew_config'=>'♻ تمدید   سرویس',
     'change_config_location'=>' تغییر لوکیشن',
-    'selected_protocol'=>" پراتکل انتخابی",
+    'selected_protocol'=>" پروتکل انتخابی",
     'volume_left'=>" حجم باقیمانده:",
     'expire_date'=>"تاریخ انقضاء: ",
     'buy_date'=>"تاریخ خرید: ",
