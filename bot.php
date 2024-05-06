@@ -134,7 +134,7 @@ if(preg_match('/^\/([Ss]tart)/', $text) or $text == $buttonValues['back_to_main'
     }
 }
 if(preg_match('/^sendMessageToUser(\d+)/',$data,$match) && ($from_id == $admin || $userInfo['isAdmin'] == true) && $text != $buttonValues['cancel']){
-    editText($message_id,'🔘|لطفا پیامت رو بفرست');
+    editText($message_id,'|لطفا پیامت رو بفرست');
     setUser($data);
 }
 if(preg_match('/^sendMessageToUser(\d+)/',$userInfo['step'],$match) && ($from_id == $admin || $userInfo['isAdmin'] == true) && $text != $buttonValues['cancel']){
@@ -160,7 +160,7 @@ if(preg_match('/^delAdmin(\d+)/',$data,$match) && $from_id === $admin){
 }
 if($data=="addNewAdmin" && $from_id === $admin){
     delMessage();
-    sendMessage("🧑‍💻| کسی که میخوای ادمین کنی رو آیدی عددیشو بفرست ببینم:",$cancelKey);
+    sendMessage("🧑‍💻| کسی که میخ ادمین کنی رو آیدی عددیشو بفرست ببینم:",$cancelKey);
     setUser($data);
 }
 if($userInfo['step'] == "addNewAdmin" && $from_id === $admin && $text != $buttonValues['cancel']){
@@ -170,7 +170,7 @@ if($userInfo['step'] == "addNewAdmin" && $from_id === $admin && $text != $button
         $stmt->execute();
         $stmt->close();
         
-        sendMessage("✅ | 🥳 خب کاربر الان ادمین شد تبریک میگم",$removeKeyboard);
+        sendMessage(" | 🥳 خب کاربر الان ادمین شد تبریک میگم",$removeKeyboard);
         setUser();
         
         sendMessage("لیست ادمین ها",getAdminsKeys());
@@ -234,7 +234,7 @@ if(preg_match('/^changePaymentKeys(\w+)/',$data,$match) && ($from_id == $admin |
             $gate = "آدرس والت ترون";
             break;
     }
-    sendMessage("🔘|لطفا $gate را وارد کنید", $cancelKey);
+    sendMessage("|لطفا $gate را وارد کنید", $cancelKey);
     setUser($data);
 }
 if(preg_match('/^changePaymentKeys(\w+)/',$userInfo['step'],$match) && $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)){
@@ -454,12 +454,12 @@ if(preg_match('/^editAgentDiscount(Server|Plan|Normal)(\d+)_(.*)/',$userInfo['st
 }
 if($data=="editRewardTime" && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     delMessage();
-    sendMessage("🙃 | لطفا زمان تأخیر در ارسال گزارش رو به ساعت وارد کن\n\nنکته: هر n ساعت گزارش به ربات ارسال میشه! ",$cancelKey);
+    sendMessage(" | لطفا زمان تأخیر در ارسال گزارش رو به ساعت وارد کن\n\nنکته: هر n ساعت گزارش به ربات ارسال میشه! ",$cancelKey);
     setUser($data);
 }
 if($data=="userReports" && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     delMessage();
-    sendMessage("🙃 | لطفا آیدی عددی کاربر رو وارد کن",$cancelKey);
+    sendMessage(" | لطفا آیدی عددی کاربر رو وارد کن",$cancelKey);
     setUser($data);
 }
 if($userInfo['step'] == "userReports" && $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)){
@@ -471,7 +471,7 @@ if($userInfo['step'] == "userReports" && $text != $buttonValues['cancel'] && ($f
             setUser();
         }else sendMessage("کاربری با این آیدی یافت نشد");
     }else{
-        sendMessage("😡|لطفا فقط عدد ارسال کن");
+        sendMessage("|لطفا فقط عدد ارسال کن");
     }
 }
 if($data=="inviteSetting" && ($from_id == $admin || $userInfo['isAdmin'] == true)){
@@ -481,7 +481,7 @@ if($data=="inviteSetting" && ($from_id == $admin || $userInfo['isAdmin'] == true
     $stmt->close();
     setUser();
     $keys = json_encode(['inline_keyboard'=>[
-        [['text'=>"❗️بنر دعوت",'callback_data'=>"inviteBanner"]],
+        [['text'=>"بنر دعوت",'callback_data'=>"inviteBanner"]],
         [
             ['text'=>$inviteAmount,'callback_data'=>"editInviteAmount"],
             ['text'=>"مقدار پورسانت",'callback_data'=>"wizwizch"]
@@ -490,10 +490,10 @@ if($data=="inviteSetting" && ($from_id == $admin || $userInfo['isAdmin'] == true
             ['text'=>$buttonValues['back_button'],'callback_data'=>"botSettings"]
             ],
         ]]); 
-    $res = editText($message_id,"✅ تنظیمات بازاریابی",$keys);
+    $res = editText($message_id," تنظیمات بازاریابی",$keys);
     if(!$res->ok){
         delMessage();
-        sendMessage("✅ تنظیمات بازاریابی",$keys);
+        sendMessage(" تنظیمات بازاریابی",$keys);
     }
 } 
 if($data=="inviteBanner" && ($from_id == $admin || $userInfo['isAdmin'] == true)){
@@ -519,7 +519,7 @@ if($data=="inviteBanner" && ($from_id == $admin || $userInfo['isAdmin'] == true)
 }
 if($data=="editInviteBannerText" && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     delMessage();
-    sendMessage("🤖 | لطفا بنر جدید را بفرستید از متن  LINK برای نمایش لینک دعوت استفاده کنید)",$cancelKey);
+    sendMessage(" | لطفا بنر جدید را بفرستید از متن  LINK برای نمایش لینک دعوت استفاده کنید)",$cancelKey);
     setUser($data);
 }
 if($userInfo['step']=="editInviteBannerText" && ($from_id == $admin || $userInfo['isAdmin'] == true) && $text != $buttonValues['cancel']){
@@ -533,7 +533,7 @@ if($userInfo['step']=="editInviteBannerText" && ($from_id == $admin || $userInfo
         $data['type'] = 'text';
         $data['text'] = $text;
     }else{
-        sendMessage("🥺 | بنر ارسال شده پشتیبانی نمی شود");
+        sendMessage(" | بنر ارسال شده پشتیبانی نمی شود");
         exit();
     }
     
@@ -596,7 +596,7 @@ if($userInfo['step'] == "editInviteAmount" && ($from_id == $admin || $userInfo['
         sendMessage($mainValues['saved_successfuly'],$removeKeyboard);
         
         $keys = json_encode(['inline_keyboard'=>[
-            [['text'=>"❗️بنر دعوت",'callback_data'=>"inviteBanner"]],
+            [['text'=>"بنر دعوت",'callback_data'=>"inviteBanner"]],
             [
                 ['text'=>number_format($text) . " تومان",'callback_data'=>"editInviteAmount"],
                 ['text'=>"مقدار پورسانت",'callback_data'=>"wizwizch"]
@@ -605,7 +605,7 @@ if($userInfo['step'] == "editInviteAmount" && ($from_id == $admin || $userInfo['
                 ['text'=>$buttonValues['back_button'],'callback_data'=>"botSettings"]
                 ],
             ]]); 
-        sendMessage("✅ تنظیمات بازاریابی",$keys);
+        sendMessage(" تنظیمات بازاریابی",$keys);
         setUser();
     }else sendMessage($mainValues['send_only_number']);
 }
@@ -665,7 +665,7 @@ if($data=="myInfo"){
     
     $keys = json_encode(['inline_keyboard'=>[
         [
-            ['text'=>"شارژ کیف پول 💰",'callback_data'=>"increaseMyWallet"],
+            ['text'=>"شارژ کیف پول ",'callback_data'=>"increaseMyWallet"],
             ['text'=>"انتقال موجودی",'callback_data'=>"transferMyWallet"]
         ],
         [
@@ -673,14 +673,14 @@ if($data=="myInfo"){
             ]
         ]]);
     editText($message_id, "
-💞 اطلاعات حساب شما:
+• اطلاعات حساب شما:
     
-🔰 شناسه کاربری: <code> $from_id </code>
-🍄 یوزرنیم: <code> @$username </code>
-👤 اسم:  <code> $first_name </code>
-💰 موجودی: <code> $myWallet </code>
+• شناسه کاربری: <code> $from_id </code>
+• یوزرنیم: <code> @$username </code>
+• اسم:  <code> $first_name </code>
+• موجودی: <code> $myWallet </code>
 
-☑️ کل سرویس ها : <code> $totalBuys </code> عدد
+• کل سرویس ها : <code> $totalBuys </code> عدد
 ⁮⁮ ⁮⁮ ⁮⁮ ⁮⁮
 ",
             $keys,"html");
@@ -722,9 +722,9 @@ if(preg_match('/^tranfserUserAmount(\d+)/',$userInfo['step'],$match) && $text !=
                 $stmt->execute();
                 $stmt->close();
                 
-                sendMessage("✅|مبلغ " . number_format($text) . " تومان به کیف پول شما توسط کاربر $from_id انتقال یافت",null,null,$match[1]);
+                sendMessage("|مبلغ " . number_format($text) . " تومان به کیف پول شما توسط کاربر $from_id انتقال یافت",null,null,$match[1]);
                 setUser();
-                sendMessage("✅|مبلغ " . number_format($text) . " تومان به کیف پول کاربر مورد نظر شما انتقال یافت",$removeKeyboard);
+                sendMessage("|مبلغ " . number_format($text) . " تومان به کیف پول کاربر مورد نظر شما انتقال یافت",$removeKeyboard);
                 sendMessage("لطفا یکی از کلید های زیر را انتخاب کنید",getMainKeys());
             }else sendMessage("موجودی حساب شما کم است");
         }else sendMessage("لطفا عددی بزرگتر از صفر وارد کنید");
@@ -732,7 +732,7 @@ if(preg_match('/^tranfserUserAmount(\d+)/',$userInfo['step'],$match) && $text !=
 }
 if($data=="increaseMyWallet"){
     delMessage();
-    sendMessage("🙂 عزیزم مقدار شارژ مورد نظر خود را به تومان وارد کن (بیشتر از 5000 تومان)",$cancelKey);
+    sendMessage("  مقدار شارژ مورد نظر خود را به تومان وارد کن (بیشتر از 5000 تومان)",$cancelKey);
     setUser($data);
 }
 if($userInfo['step'] == "increaseMyWallet" && $text != $buttonValues['cancel']){
@@ -744,7 +744,7 @@ if($userInfo['step'] == "increaseMyWallet" && $text != $buttonValues['cancel']){
         sendMessage("لطفا مقداری بیشتر از 5000 وارد کن");
         exit();
     }
-    sendMessage("🪄 لطفا صبور باشید ...",$removeKeyboard);
+    sendMessage(" لطفا صبور باشید ...",$removeKeyboard);
     $hash_id = RandomString();
     $stmt = $connection->prepare("DELETE FROM `pays` WHERE `user_id` = ? AND `type` = 'INCREASE_WALLET' AND `state` = 'pending'");
     $stmt->bind_param("i", $from_id);
@@ -848,17 +848,17 @@ if(preg_match('/^approvePayment(.*)/',$data,$match) && ($from_id == $admin || $u
     $stmt->execute();
     $stmt->close();
 
-    sendMessage("افزایش حساب شما با موفقیت تأیید شد\n✅ مبلغ " . number_format($price). " تومان به حساب شما اضافه شد",null,null,$userId);
+    sendMessage("افزایش حساب شما با موفقیت تأیید شد\n مبلغ " . number_format($price). " تومان به حساب شما اضافه شد",null,null,$userId);
     
     unset($markup[count($markup)-1]);
-    $markup[] = [['text' => '✅', 'callback_data' => "dontsendanymore"]];
+    $markup[] = [['text' => '', 'callback_data' => "dontsendanymore"]];
     $keys = json_encode(['inline_keyboard'=>array_values($markup)],488);
 
     editKeys($keys);
 }
 if(preg_match('/^decPayment(.*)/',$data,$match) && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     unset($markup[count($markup)-1]);
-    $markup[] = [['text' => '❌', 'callback_data' => "dontsendanymore"]];
+    $markup[] = [['text' => '', 'callback_data' => "dontsendanymore"]];
     $keys = json_encode(['inline_keyboard'=>array_values($markup)],488);
     file_put_contents("temp" . $from_id . ".txt", $keys);
     sendMessage("لطفا دلیل عدم تأیید افزایش موجودی را وارد کنید",$cancelKey);
@@ -879,12 +879,12 @@ if(preg_match('/^decPayment(\d+)_(.*)/',$userInfo['step'],$match) && ($from_id =
     $stmt->execute();
     $stmt->close();
     
-    sendMessage("💔 افزایش موجودی شما به مبلغ "  . number_format($price) . " به دلیل زیر رد شد\n\n$text",null,null,$userId);
+    sendMessage(" افزایش موجودی شما به مبلغ "  . number_format($price) . " به دلیل زیر رد شد\n\n$text",null,null,$userId);
 
 
     editKeys(file_get_contents("temp" . $from_id . ".txt"), $match[1]);
     setUser();
-    sendMessage('پیامت رو براش ارسال کردم ... 🤝',$removeKeyboard);
+    sendMessage('پیامت رو براش ارسال کردم ... ',$removeKeyboard);
     unlink("temp" . $from_id . ".txt");
 }
 if($data=="increaseUserWallet" && ($from_id == $admin || $userInfo['isAdmin'] == true)){
@@ -919,8 +919,8 @@ if(preg_match('/^increaseWalletUser(\d+)/',$userInfo['step'], $match) && $text !
         $stmt->execute();
         $stmt->close();
     
-        sendMessage("✅ مبلغ " . number_format($text). " تومان به حساب شما اضافه شد",null,null,$match[1]);
-        sendMessage("✅ مبلغ " . number_format($text) . " تومان به کیف پول کاربر مورد نظر اضافه شد",$removeKeyboard);
+        sendMessage(" مبلغ " . number_format($text). " تومان به حساب شما اضافه شد",null,null,$match[1]);
+        sendMessage(" مبلغ " . number_format($text) . " تومان به کیف پول کاربر مورد نظر اضافه شد",$removeKeyboard);
         sendMessage($mainValues['reached_main_menu'],getMainKeys());
         setUser();
     }else{
@@ -969,7 +969,7 @@ if(preg_match('/^decreaseWalletUser(\d+)/',$userInfo['step'], $match) && $text !
 }
 if($data=="editRewardChannel" && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     delMessage();
-    sendMessage("🤗|لطفا ربات رو در کانال ادمین کن و آیدی کانال رو بفرست",$cancelKey);
+    sendMessage("|لطفا ربات رو در کانال ادمین کن و آیدی کانال رو بفرست",$cancelKey);
     setUser($data);
 }
 if($userInfo['step'] == "editRewardChannel" && ($from_id == $admin || $userInfo['isAdmin'] == true) && $text != $buttonValues['cancel']){
@@ -983,11 +983,11 @@ if($userInfo['step'] == "editRewardChannel" && ($from_id == $admin || $userInfo[
             exit();
         }
     }
-    sendMessage("😡|ای بابا ،ربات هنوز تو کانال عضو نشده، اول ربات رو تو کانال ادمین کن و آیدیش رو بفرست");
+    sendMessage("| ،ربات هنوز تو کانال عضو نشده، اول ربات رو تو کانال ادمین کن و آیدیش رو بفرست");
 }
 if($data=="editLockChannel" && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     delMessage();
-    sendMessage("🤗|لطفا ربات رو در کانال ادمین کن و آیدی کانال رو بفرست",$cancelKey);
+    sendMessage("|لطفا ربات رو در کانال ادمین کن و آیدی کانال رو بفرست",$cancelKey);
     setUser($data);
 }
 if($userInfo['step'] == "editLockChannel" && ($from_id == $admin || $userInfo['isAdmin'] == true) && $text != $buttonValues['cancel']){
@@ -1081,9 +1081,9 @@ if(preg_match('/createAccServer(\d+)/',$data, $match) && ($from_id == $admin || 
         alert("♻️ | دریافت دسته بندی ...");
         $keyboard[] = ['text' => $buttonValues['back_to_main'], 'callback_data' => "createMultipleAccounts"];
         $keyboard = array_chunk($keyboard,1);
-        editText($message_id, "2️⃣ مرحله دو:
+        editText($message_id, " مرحله دو:
 
-دسته بندی مورد نظرت رو انتخاب کن 🤭", json_encode(['inline_keyboard'=>$keyboard]));
+دسته بندی مورد نظرت رو انتخاب کن ", json_encode(['inline_keyboard'=>$keyboard]));
     }
 
 }
@@ -1096,9 +1096,9 @@ if(preg_match('/createAccCategory(\d+)_(\d+)/',$data,$match) && ($from_id == $ad
     $respd = $stmt->get_result();
     $stmt->close();
     if($respd->num_rows==0){
-        alert("💡پلنی در این دسته بندی وجود ندارد ");
+        alert("پلنی در این دسته بندی وجود ندارد ");
     }else{
-        alert("📍در حال دریافت لیست پلن ها");
+        alert("در حال دریافت لیست پلن ها");
         $keyboard = [];
         while($file = $respd->fetch_assoc()){
             $id = $file['id'];
@@ -1107,27 +1107,27 @@ if(preg_match('/createAccCategory(\d+)_(\d+)/',$data,$match) && ($from_id == $ad
         }
         $keyboard[] = ['text' => $buttonValues['back_to_main'], 'callback_data' => "createAccServer$sid"];
         $keyboard = array_chunk($keyboard,1);
-        editText($message_id, "3️⃣ مرحله سه:
+        editText($message_id, " مرحله سه:
 
-یکی از پلن هارو انتخاب کن و برو برای پرداختش 🤲 🕋", json_encode(['inline_keyboard'=>$keyboard]));
+یکی از پلن ها را انتخاب کنید    ", json_encode(['inline_keyboard'=>$keyboard]));
     }
 
 }
 if(preg_match('/^createAccPlan(\d+)/',$data,$match) && $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     delMessage();
-    sendMessage("❗️لطفا مدت زمان اکانت را به ( روز ) وارد کن:",$cancelKey);
+    sendMessage("لطفا مدت زمان اکانت را به ( روز ) وارد کن:",$cancelKey);
     setUser('createAccDate' . $match[1]);
 }
 if(preg_match('/^createAccDate(\d+)/',$userInfo['step'],$match) && $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     if(is_numeric($text)){
         if($text >0){
-            sendMessage("❕حجم اکانت ها رو به گیگابایت ( GB ) وارد کن:");
+            sendMessage("❕حجم اکانت ها رابه گیگابایت ( GB ) وارد کن:");
             setUser('createAccVolume' . $match[1] . "_" . $text);
         }else{
             sendMessage("عدد باید بیشتر از 0 باشه");
         }
     }else{
-        sendMessage('😡 | مگه نمیگم فقط عدد بفرس نمیفهمی؟ یا خودتو زدی به نفهمی؟');
+        sendMessage('فقط عدد');
     }
 }
 if(preg_match('/^createAccVolume(\d+)_(\d+)/',$userInfo['step'],$match) && $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)){
@@ -1281,15 +1281,15 @@ if(preg_match('/^createAccAmount(\d+)_(\d+)_(\d+)/',$userInfo['step'], $match) &
         }
         
         if(is_null($response)){
-            sendMessage('❌ | 🥺 گلم ، اتصال به سرور برقرار نیست لطفا مدیر رو در جریان بزار ...');
+            sendMessage('اتصال به سرور برقرار نیست لطفا مدیر رو در جریان بزار ...');
             break;
         }
     	if($response == "inbound not Found"){
-            sendMessage("❌ | 🥺 سطر (inbound) با آیدی $inbound_id تو این سرور وجود نداره ، مدیر رو در جریان بزار ...");
+            sendMessage("سطر (inbound) با آیدی $inbound_id تو این سرور وجود نداره ، مدیر رو در جریان بزار ...");
             break;
     	}
     	if(!$response->success){
-            sendMessage('❌ | 😮 وای خطا داد لطفا سریع به مدیر بگو ...');
+            sendMessage('خطا داد لطفا به مدیر بگو ...');
             sendMessage("خطای سرور {$serverInfo['title']}:\n\n" . ($response->msg), null, null, $admin);
             break;
         }
@@ -1309,9 +1309,9 @@ if(preg_match('/^createAccAmount(\d+)_(\d+)_(\d+)/',$userInfo['step'], $match) &
         foreach($vraylink as $link){
             $acc_text = "
     
-        🔮 $remark \n " . ($botState['configLinkState'] != "off" && $serverType != "marzban"?"<code>$link</code>":"");
+         $remark \n " . ($botState['configLinkState'] != "off" && $serverType != "marzban"?"<code>$link</code>":"");
             if($botState['subLinkState'] == "on") $acc_text .= 
-            " \n🌐 subscription : <code>$subLink</code>";
+            " \n subscription : <code>$subLink</code>";
         
             $file = RandomString() .".png";
             
@@ -1350,7 +1350,7 @@ if(preg_match('/^createAccAmount(\d+)_(\d+)_(\d+)/',$userInfo['step'], $match) &
         $stmt->execute();
         $stmt->close();
     }
-    sendMessage("☑️|❤️ اکانت های جدید با موفقیت ساخته شد",getMainKeys());
+    sendMessage("•|❤️ اکانت های جدید با موفقیت ساخته شد",getMainKeys());
     setUser();
 }
 if(preg_match('/payWithTronWallet(.*)/',$data,$match)) {
@@ -1534,12 +1534,12 @@ if(preg_match('/payWithWeSwap(.*)/',$data,$match)) {
         
         $keys = json_encode(['inline_keyboard'=>[
             [['text'=>"پرداخت با درگاه ارزی ریالی",'url'=>"https://changeto.technology/quick?amount=$priceInTrx&currency=TRX&address=$payAddress"]],
-            [['text'=>"پرداخت کردم ✅",'callback_data'=>"havePaiedWeSwap" . $match[1]]]
+            [['text'=>"پرداخت کردم ",'callback_data'=>"havePaiedWeSwap" . $match[1]]]
             ]]);
 sendMessage("
-✅ لینک پرداخت با موفقیت ایجاد شد
+ لینک پرداخت با موفقیت ایجاد شد
 
-💰مبلغ : " . $priceInTrx . " ترون
+مبلغ : " . $priceInTrx . " ترون
 
 ✔️ بعد از پرداخت حدود 1 الی 15 دقیقه صبر کنید تا پرداخت به صورت کامل انجام شود سپس روی پرداخت کردم کلیک کنید
 ⁮⁮ ⁮⁮
@@ -1577,8 +1577,8 @@ if(preg_match('/havePaiedWeSwap(.*)/',$data,$match)) {
         $stmt->execute();
         $stmt->close();
         
-        sendMessage("افزایش حساب شما با موفقیت تأیید شد\n✅ مبلغ " . number_format($price). " تومان به حساب شما اضافه شد");
-        sendMessage("✅ مبلغ " . number_format($price) . " تومان به کیف پول کاربر $from_id توسط درگاه ارزی ریالی اضافه شد",null,null,$admin);                
+        sendMessage("افزایش حساب شما با موفقیت تأیید شد\n مبلغ " . number_format($price). " تومان به حساب شما اضافه شد");
+        sendMessage(" مبلغ " . number_format($price) . " تومان به کیف پول کاربر $from_id توسط درگاه ارزی ریالی اضافه شد",null,null,$admin);                
     }
     elseif($payType == "BUY_SUB"){
     $uid = $from_id;
@@ -1712,15 +1712,15 @@ if(preg_match('/havePaiedWeSwap(.*)/',$data,$match)) {
         }
         
         if(is_null($response)){
-            sendMessage('❌ | 🥺 گلم ، اتصال به سرور برقرار نیست لطفا مدیر رو در جریان بزار ...');
+            sendMessage(' اتصال به سرور برقرار نیست لطفا مدیر رو در جریان بزار ...');
             exit;
         }
         if($response == "inbound not Found"){
-            sendMessage("❌ | 🥺 سطر (inbound) با آیدی $inbound_id تو این سرور وجود نداره ، مدیر رو در جریان بزار ...");
+            sendMessage("سطر (inbound) با آیدی $inbound_id تو این سرور وجود نداره ، مدیر رو در جریان بزار ...");
         	exit;
         }
         if(!$response->success){
-            sendMessage('❌ | 😮 وای خطا داد لطفا سریع به مدیر بگو ...');
+            sendMessage(' خطا داد لطفا  به مدیر بگو ...');
             sendMessage("خطای سرور {$serverInfo['title']}:\n\n" . ($response->msg), null, null, $admin);
             exit;
         }
@@ -1740,20 +1740,20 @@ if(preg_match('/havePaiedWeSwap(.*)/',$data,$match)) {
         foreach($vraylink as $link){
         $acc_text = "
         
-😍 سفارش جدید شما
-📡 پروتکل: $protocol
-🔮 نام سرویس: $remark
-🔋حجم سرویس: $volume گیگ
-⏰ مدت سرویس: $days روز⁮⁮ ⁮⁮
+• سفارش جدید شما
+• پروتکل: $protocol
+• نام سرویس: $remark
+• حجم سرویس: $volume گیگ
+• مدت سرویس: $days روز⁮⁮ ⁮⁮
 " . ($botState['configLinkState'] != "off" && $serverType != "marzban"?"
-💝 config : <code>$link</code>":"");
+• config : <code>$link</code>":"");
 
 if($botState['subLinkState'] == "on") $acc_text .= "
 
-🔋 Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
+• Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
 
 
-🌐 subscription : <code>$subLink</code>
+ subscription : <code>$subLink</code>
         
         ";
               
@@ -1867,7 +1867,7 @@ elseif($payType == "RENEW_ACCOUNT"){
     }
     
     if(is_null($response)){
-    	alert('🔻مشکل فنی در اتصال به سرور. لطفا به مدیریت اطلاع بدید',true);
+    	alert('مشکل فنی در اتصال به سرور. لطفا به مدیریت اطلاع بدید',true);
     	exit;
     }
     $stmt = $connection->prepare("UPDATE `orders_list` SET `expire_date` = ?, `notif` = 0 WHERE `id` = ?");
@@ -1880,10 +1880,10 @@ elseif($payType == "RENEW_ACCOUNT"){
     $stmt->execute();
     $stmt->close();
 
-sendMessage("✅سرویس $remark با موفقیت تمدید شد",getMainKeys());
+sendMessage("سرویس $remark با موفقیت تمدید شد",getMainKeys());
 $keys = json_encode(['inline_keyboard'=>[
     [
-        ['text'=>"به به تمدید 😍",'callback_data'=>"wizwizch"]
+        ['text'=>"تمدید •",'callback_data'=>"wizwizch"]
         ],
     ]]);
 
@@ -1946,22 +1946,22 @@ if($response->success){
     $stmt->execute();
     $stmt->close();
     
-    sendMessage("✅$volume روز به مدت زمان سرویس شما اضافه شد",getMainKeys());
+    sendMessage("$volume روز به مدت زمان سرویس شما اضافه شد",getMainKeys());
     
     $keys = json_encode(['inline_keyboard'=>[
         [
-            ['text'=>"اخیش یکی زمان زد 😁",'callback_data'=>"wizwizch"]
+            ['text'=>"تمدید زمان",'callback_data'=>"wizwizch"]
             ],
         ]]);
 sendMessage("
-🔋|💰 افزایش زمان با ( کیف پول )
+•| افزایش زمان با ( کیف پول )
 
-▫️آیدی کاربر: $from_id
-👨‍💼اسم کاربر: $first_name
-⚡️ نام کاربری: $username
-🎈 نام سرویس: $remark
-⏰ مدت افزایش: $volume روز
-💰قیمت: $price تومان
+•آیدی کاربر: $from_id
+•اسم کاربر: $first_name
+• نام کاربری: $username
+• نام سرویس: $remark
+• مدت افزایش: $volume روز
+قیمت: $price تومان
 ⁮⁮ ⁮⁮
 ",$keys,"html", $admin);
 
@@ -2018,21 +2018,21 @@ if($response->success){
     $stmt->close();
     $keys = json_encode(['inline_keyboard'=>[
         [
-            ['text'=>"اخیش یکی حجم زد 😁",'callback_data'=>"wizwizch"]
+            ['text'=>"تمدید زمان",'callback_data'=>"wizwizch"]
             ],
         ]]);
 sendMessage("
-🔋|💰 افزایش حجم با ( کیف پول )
+•| افزایش حجم با ( کیف پول )
 
-▫️آیدی کاربر: $from_id
-👨‍💼اسم کاربر: $first_name
-⚡️ نام کاربری: $username
-🎈 نام سرویس: $remark
-⏰ مدت افزایش: $volume گیگ
-💰قیمت: $price تومان
+•آیدی کاربر: $from_id
+•اسم کاربر: $first_name
+• نام کاربری: $username
+• نام سرویس: $remark
+• مدت افزایش: $volume گیگ
+قیمت: $price تومان
 ⁮⁮ ⁮⁮
 ",$keys,"html", $admin);
-    sendMessage( "✅$volume گیگ به حجم سرویس شما اضافه شد",getMainKeys());exit;
+    sendMessage( "$volume گیگ به حجم سرویس شما اضافه شد",getMainKeys());exit;
     
 
 }else {
@@ -2073,7 +2073,7 @@ elseif($payType == "RENEW_SCONFIG"){
     }
     
 	if(is_null($response)){
-		alert('🔻مشکل فنی در اتصال به سرور. لطفا به مدیریت اطلاع بدید',true);
+		alert('مشکل فنی در اتصال به سرور. لطفا به مدیریت اطلاع بدید',true);
 		exit;
 	}
 	$stmt = $connection->prepare("INSERT INTO `increase_order` VALUES (NULL, ?, ?, ?, ?, ?, ?);");
@@ -2082,15 +2082,15 @@ elseif($payType == "RENEW_SCONFIG"){
 	$stmt->close();
 
     sendMessage("
-    🔋|💰 تمدید مشخصات کانفیگ با ( کیف پول )
+    •| تمدید مشخصات کانفیگ با ( کیف پول )
     
-    ▫️آیدی کاربر: $from_id
-    👨‍💼اسم کاربر: $first_name
-    ⚡️ نام کاربری: $username
-    🎈 نام سرویس: $remark
-    ⏰ مدت کانفیگ: $volume گیگ
+    •آیدی کاربر: $from_id
+    •اسم کاربر: $first_name
+    • نام کاربری: $username
+    • نام سرویس: $remark
+    • مدت کانفیگ: $volume گیگ
     حجم کانفیگ:  $days روز
-    💰قیمت: $price تومان
+    قیمت: $price تومان
     ⁮⁮ ⁮⁮
     ",$keys,"html", $admin);
 
@@ -2129,7 +2129,7 @@ if($userInfo['step'] == "messageToSpeceficUser" && $text != $buttonValues['cance
     $stmt->close();
 
     if($usersCount > 0 ){
-        sendMessage("👀| خصوصی میخوای بهش پیام بدی شیطون، پیامت رو بفرس تا در گوشش بگم:");
+        sendMessage("| پیام خصوصی:");
         setUser("sendMessageToUser" . $text);
     }else{
         sendMessage($mainValues['user_not_found']);
@@ -2156,26 +2156,26 @@ if($data == 'message2All' and ($from_id == $admin || $userInfo['isAdmin'] == tru
         
         if($type == "forwardall"){
             sendMessage("
-            ❗️ یک فروارد همگانی در صف انتشار می باشد لطفا صبور باشید ...
+             یک فروارد همگانی در صف انتشار می باشد لطفا صبور باشید ...
             
-            🔰 تعداد کاربران : $usersCount
-            ☑️ فروارد شده : $offset
-            📣 باقیمانده : $leftMessages
+            • تعداد کاربران : $usersCount
+            • فروارد شده : $offset
+            • باقیمانده : $leftMessages
             ⁮⁮ ⁮⁮ ⁮⁮ ⁮⁮
             ");
         }else{
             sendMessage("
-            ❗️ یک پیام همگانی در صف انتشار می باشد لطفا صبور باشید ...
+             یک پیام همگانی در صف انتشار می باشد لطفا صبور باشید ...
             
-            🔰 تعداد کاربران : $usersCount
-            ☑️ ارسال شده : $offset
-            📣 باقیمانده : $leftMessages
+            • تعداد کاربران : $usersCount
+            • ارسال شده : $offset
+            • باقیمانده : $leftMessages
             ⁮⁮ ⁮⁮ ⁮⁮ ⁮⁮
             ");
         }
     }else{
         setUser('s2a');
-        sendMessage("لطفا پیامت رو بنویس ، میخوام برا همه بفرستمش: 🙂",$cancelKey);
+        sendMessage("لطفا پیامت رو بنویس ، میخوام برا همه بفرستمش: ",$cancelKey);
     }
 }
 if($userInfo['step'] == 's2a' and $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)){
@@ -2193,7 +2193,7 @@ if($userInfo['step'] == 's2a' and $text != $buttonValues['cancel'] && ($from_id 
     $id = $stmt->insert_id;
     $stmt->close();
     
-    sendMessage('⏳ مرسی از پیامت  ...  ',$removeKeyboard);
+    sendMessage(' مرسی از پیامت  ...  ',$removeKeyboard);
     sendMessage("برای همه بفرستم؟",json_encode(['inline_keyboard'=>[
     [['text'=>"بفرست",'callback_data'=>"yesSend2All" . $id],['text'=>"نه نفرست",'callback_data'=>"noDontSend2all" . $id]]
     ]]));
@@ -2212,7 +2212,7 @@ if(preg_match('/^yesSend2All(\d+)/', $data,$match) && ($from_id == $admin || $us
     $stmt->execute();
     $stmt->close();
     
-    editText($message_id,'⏳ کم کم برا همه ارسال میشه ...  ',getMainKeys());
+    editText($message_id,' کم کم برا همه ارسال میشه ...  ',getMainKeys());
 }
 if($data=="forwardToAll" && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     $stmt = $connection->prepare("SELECT * FROM `send_list` WHERE `state` = 1");
@@ -2234,20 +2234,20 @@ if($data=="forwardToAll" && ($from_id == $admin || $userInfo['isAdmin'] == true)
         
         if($type == "forwardall"){
             sendMessage("
-            ❗️ یک فروارد همگانی در صف انتشار می باشد لطفا صبور باشید ...
+             یک فروارد همگانی در صف انتشار می باشد لطفا صبور باشید ...
             
-            🔰 تعداد کاربران : $usersCount
-            ☑️ فروارد شده : $offset
-            📣 باقیمانده : $leftMessages
+            • تعداد کاربران : $usersCount
+            • فروارد شده : $offset
+            • باقیمانده : $leftMessages
             ⁮⁮ ⁮⁮ ⁮⁮ ⁮⁮
             ");
         }else{
             sendMessage("
-            ❗️ یک پیام همگانی در صف انتشار می باشد لطفا صبور باشید ...
+             یک پیام همگانی در صف انتشار می باشد لطفا صبور باشید ...
             
-            🔰 تعداد کاربران : $usersCount
-            ☑️ ارسال شده : $offset
-            📣 باقیمانده : $leftMessages
+            • تعداد کاربران : $usersCount
+            • ارسال شده : $offset
+            • باقیمانده : $leftMessages
             ⁮⁮ ⁮⁮ ⁮⁮ ⁮⁮
             ");
         }
@@ -2265,7 +2265,7 @@ if($userInfo['step'] == "forwardToAll" && ($from_id == $admin || $userInfo['isAd
     $stmt->close();
 
     setUser();
-    sendMessage('⏳ مرسی از پیامت  ...  ',$removeKeyboard);
+    sendMessage(' مرسی از پیامت  ...  ',$removeKeyboard);
     sendMessage("برای همه فروارد کنم؟",json_encode(['inline_keyboard'=>[
     [['text'=>"بفرست",'callback_data'=>"yesSend2All" . $id],['text'=>"نه نفرست",'callback_data'=>"noDontSend2all" . $id]]
     ]]));
@@ -2380,7 +2380,7 @@ if(preg_match('/selectCustomePlan(\d+)_(\d+)/',$data, $match) && ($botState['sel
 }
 if(preg_match('/selectCustomPlanGB(\d+)_(\d+)/',$userInfo['step'], $match) && ($botState['sellState']=="on" ||$from_id == $admin) && $text != $buttonValues['cancel']){
     if(!is_numeric($text)){
-        sendMessage("😡|لطفا فقط عدد ارسال کن");
+        sendMessage("|لطفا فقط عدد ارسال کن");
         exit();
     }
     elseif($text <1){
@@ -2392,7 +2392,7 @@ if(preg_match('/selectCustomPlanGB(\d+)_(\d+)/',$userInfo['step'], $match) && ($
         exit();
     }
     elseif(substr($text, 0, 1) == '0'){
-        sendMessage("❌عدد وارد شده نمیتواند با 0 شروع شود!");
+        sendMessage("عدد وارد شده نمیتواند با 0 شروع شود!");
         exit();
     }
     
@@ -2416,7 +2416,7 @@ if(preg_match('/selectCustomPlanGB(\d+)_(\d+)/',$userInfo['step'], $match) && ($
 }
 if((preg_match('/selectCustomPlanDay(\d+)_(\d+)_(\d+)/',$userInfo['step'], $match)) && ($botState['sellState']=="on" ||$from_id == $admin) && $text != $buttonValues['cancel']){
     if(!is_numeric($text)){
-        sendMessage("😡|لطفا فقط عدد ارسال کن");
+        sendMessage("|لطفا فقط عدد ارسال کن");
         exit();
     }
     elseif($text <1){
@@ -2428,7 +2428,7 @@ if((preg_match('/selectCustomPlanDay(\d+)_(\d+)_(\d+)/',$userInfo['step'], $matc
         exit();
     }
     elseif(substr($text, 0, 1) == '0'){
-        sendMessage("❌عدد وارد شده نمیتواند با 0 شروع شود!");
+        sendMessage("عدد وارد شده نمیتواند با 0 شروع شود!");
         exit();
     }
 
@@ -2576,7 +2576,7 @@ if((preg_match('/^discountCustomPlanDay(\d+)/',$userInfo['step'], $match) || pre
     if($botState['walletState'] == "on") $keyboard[] = [['text' => $buttonValues['pay_with_wallet'],  'callback_data' => "payCustomWithWallet$hash_id"]];
     if($botState['tronWallet'] == "on") $keyboard[] = [['text' => $buttonValues['tron_gateway'],  'callback_data' => "payWithTronWallet" . $hash_id]];
 
-    if(!preg_match('/^discountCustomPlanDay/', $userInfo['step'])) $keyboard[] = [['text' => " 🎁 نکنه کد تخفیف داری؟ ",  'callback_data' => "haveDiscountCustom_" . $rowId]];
+    if(!preg_match('/^discountCustomPlanDay/', $userInfo['step'])) $keyboard[] = [['text' => " وارد کردن کد تخقیف ",  'callback_data' => "haveDiscountCustom_" . $rowId]];
 	$keyboard[] = [['text' => $buttonValues['cancel'], 'callback_data' => "mainMenu"]];
     $price = ($price == 0) ? 'رایگان' : number_format($price).' تومان ';
     sendMessage(str_replace(['VOLUME', 'DAYS', 'PLAN-NAME', 'PRICE', 'DESCRIPTION'], [$volume, $days, $name, $price, $desc], $mainValues['buy_subscription_detail']),json_encode(['inline_keyboard'=>$keyboard]), "HTML");
@@ -2762,7 +2762,7 @@ if((preg_match('/^discountSelectPlan(\d+)_(\d+)_(\d+)/',$userInfo['step'],$match
         $agentBought = true;
     }
     if($price == 0 or ($from_id == $admin)){
-        $keyboard[] = [['text' => '📥 دریافت رایگان', 'callback_data' => "freeTrial$id"]];
+        $keyboard[] = [['text' => ' دریافت رایگان', 'callback_data' => "freeTrial$id"]];
         setUser($remark, 'temp');
     }else{
         $token = base64_encode("{$from_id}.{$id}");
@@ -2799,7 +2799,7 @@ if((preg_match('/^discountSelectPlan(\d+)_(\d+)_(\d+)/',$userInfo['step'],$match
         if($botState['walletState'] == "on") $keyboard[] = [['text' => $buttonValues['pay_with_wallet'],  'callback_data' => "payWithWallet$hash_id"]];
         if($botState['tronWallet'] == "on") $keyboard[] = [['text' => $buttonValues['tron_gateway'],  'callback_data' => "payWithTronWallet" . $hash_id]];
         
-        if(!preg_match('/^discountSelectPlan/', $userInfo['step'])) $keyboard[] = [['text' => " 🎁 نکنه کد تخفیف داری؟ ",  'callback_data' => "haveDiscountSelectPlan_" . $match[1] . "_" . $match[2] . "_" . $rowId]];
+        if(!preg_match('/^discountSelectPlan/', $userInfo['step'])) $keyboard[] = [['text' => " وارد کردن کد تخقیف ",  'callback_data' => "haveDiscountSelectPlan_" . $match[1] . "_" . $match[2] . "_" . $rowId]];
 
     }
 	$keyboard[] = [['text' => $buttonValues['back_to_main'], 'callback_data' => "selectCategory{$call_id}_{$sid}"]];
@@ -2940,15 +2940,15 @@ if(preg_match('/payCustomWithWallet(.*)/',$data, $match)){
     }
     
     if(is_null($response)){
-        alert('❌ | 🥺 گلم ، اتصال به سرور برقرار نیست لطفا مدیر رو در جریان بزار ...');
+        alert(' ، اتصال به سرور برقرار نیست لطفا مدیر رو در جریان بزار ...');
         exit;
     }
 	if($response == "inbound not Found"){
-        alert("❌ | 🥺 سطر (inbound) با آیدی $inbound_id تو این سرور وجود نداره ، مدیر رو در جریان بزار ...");
+        alert("سطر (inbound) با آیدی $inbound_id تو این سرور وجود نداره ، مدیر رو در جریان بزار ...");
 		exit;
 	}
 	if(!$response->success){
-        alert('❌ | 😮 وای خطا داد لطفا سریع به مدیر بگو ...');
+        alert(' خطا داد لطفا  به مدیر بگو ...');
         sendMessage("خطای سرور {$serverInfo['title']}:\n\n" . ($response->msg), null, null, $admin);
         exit;
     }
@@ -2977,19 +2977,19 @@ if(preg_match('/payCustomWithWallet(.*)/',$data, $match)){
     define('IMAGE_HEIGHT',540);
     foreach($vraylink as $link){
         $acc_text = "
-😍 سفارش جدید شما
-📡 پروتکل: $protocol
-🔮 نام سرویس: $remark
-🔋حجم سرویس: $volume گیگ
-⏰ مدت سرویس: $days روز⁮⁮ ⁮⁮
+• سفارش جدید شما
+• پروتکل: $protocol
+• نام سرویس: $remark
+• حجم سرویس: $volume گیگ
+• مدت سرویس: $days روز⁮⁮ ⁮⁮
 " . ($botState['configLinkState'] != "off" && $serverType != "marzban"?"
-💝 config : <code>$link</code>":"");
+• config : <code>$link</code>":"");
 if($botState['subLinkState'] == "on") $acc_text .= "
 
-🔋 Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
+• Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
 
 
-🌐 subscription : <code>$subLink</code>"; 
+ subscription : <code>$subLink</code>"; 
     
         $file = RandomString() .".png";
         $ecc = 'L';
@@ -3348,15 +3348,15 @@ if(preg_match('/accCustom(.*)/',$data, $match) and $text != $buttonValues['cance
     }
     
     if(is_null($response)){
-        alert('❌ | 🥺 گلم ، اتصال به سرور برقرار نیست لطفا مدیر رو در جریان بزار ...');
+        alert(' ، اتصال به سرور برقرار نیست لطفا مدیر رو در جریان بزار ...');
         exit;
     }
 	if($response == "inbound not Found"){
-        alert("❌ | 🥺 سطر (inbound) با آیدی $inbound_id تو این سرور وجود نداره ، مدیر رو در جریان بزار ...");
+        alert("سطر (inbound) با آیدی $inbound_id تو این سرور وجود نداره ، مدیر رو در جریان بزار ...");
 		exit;
 	}
 	if(!$response->success){
-        alert('❌ | 😮 وای خطا داد لطفا سریع به مدیر بگو ...');
+        alert(' خطا داد لطفا  به مدیر بگو ...');
         sendMessage("خطای سرور {$serverInfo['title']}:\n\n" . ($response->msg), null, null, $admin);
         exit;
     }
@@ -3382,18 +3382,18 @@ if(preg_match('/accCustom(.*)/',$data, $match) and $text != $buttonValues['cance
 
     foreach($vraylink as $vray_link){
         $acc_text = "
-😍 سفارش جدید شما
-📡 پروتکل: $protocol
-🔮 نام سرویس: $remark
-🔋حجم سرویس: $volume گیگ
-⏰ مدت سرویس: $days روز⁮⁮ ⁮⁮
+• سفارش جدید شما
+• پروتکل: $protocol
+• نام سرویس: $remark
+• حجم سرویس: $volume گیگ
+• مدت سرویس: $days روز⁮⁮ ⁮⁮
 " . ($botState['configLinkState'] != "off" && $serverType != "marzban"?"
-💝 config : <code>$vray_link</code>":"");
+• config : <code>$vray_link</code>":"");
 if($botState['subLinkState'] == "on") $acc_text .= "
 
-🔋 Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
+• Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
 
-\n🌐 subscription : <code>$subLink</code>";
+\n subscription : <code>$subLink</code>";
     
         $file = RandomString() .".png";
         $ecc = 'L';
@@ -3415,7 +3415,7 @@ if($botState['subLinkState'] == "on") $acc_text .= "
     	sendPhoto($botUrl . $file, $acc_text,json_encode(['inline_keyboard'=>[[['text'=>$buttonValues['back_to_main'],'callback_data'=>"mainMenu"]]]]),"HTML", $uid);
         unlink($file);
     }
-    sendMessage('✅ کانفیگ و براش ارسال کردم', getMainKeys());
+    sendMessage(' کانفیگ و براش ارسال کردم', getMainKeys());
     
 	$stmt = $connection->prepare("INSERT INTO `orders_list` 
 	    (`userid`, `token`, `transid`, `fileid`, `server_id`, `inbound_id`, `remark`, `uuid`, `protocol`, `expire_date`, `link`, `amount`, `status`, `date`, `notif`, `rahgozar`)
@@ -3427,7 +3427,7 @@ if($botState['subLinkState'] == "on") $acc_text .= "
 
 
     unset($markup[count($markup)-1]);
-    $markup[] = [['text'=>"✅",'callback_data'=>"wizwizch"]];
+    $markup[] = [['text'=>"",'callback_data'=>"wizwizch"]];
     $keys = json_encode(['inline_keyboard'=>array_values($markup)],488);
 
 
@@ -3475,7 +3475,7 @@ if($botState['subLinkState'] == "on") $acc_text .= "
     if($admin != $from_id){ 
         $keys = json_encode(['inline_keyboard'=>[
             [
-                ['text'=>"به به 🛍",'callback_data'=>"wizwizch"]
+                ['text'=>"به به ",'callback_data'=>"wizwizch"]
             ],
             ]]);
         $msg = str_replace(['USER-ID', 'USERNAME', 'NAME', 'PRICE', 'REMARK', 'FILENAME'],
@@ -3555,7 +3555,7 @@ if(preg_match('/payWithWallet(.*)/',$data, $match)){
         }
         
     	if(is_null($response)){
-    		alert('🔻مشکل فنی در اتصال به سرور. لطفا به مدیریت اطلاع بدید',true);
+    		alert('مشکل فنی در اتصال به سرور. لطفا به مدیریت اطلاع بدید',true);
     		exit;
     	}
     	$stmt = $connection->prepare("INSERT INTO `increase_order` VALUES (NULL, ?, ?, ?, ?, ?, ?);");
@@ -3567,7 +3567,7 @@ if(preg_match('/payWithWallet(.*)/',$data, $match)){
                 ['text'=>$buttonValues['back_to_main'],'callback_data'=>"mainMenu"]
             ],
             ]]);
-        editText($message_id,"✅سرویس $remark با موفقیت تمدید شد",$keys);
+        editText($message_id,"سرویس $remark با موفقیت تمدید شد",$keys);
     }else{
         $accountCount = $payInfo['agent_count']!=0?$payInfo['agent_count']:1;
         
@@ -3670,15 +3670,15 @@ if(preg_match('/payWithWallet(.*)/',$data, $match)){
                 } 
             }
             if(is_null($response)){
-                sendMessage('❌ | 🥺 گلم ، اتصال به سرور برقرار نیست لطفا مدیر رو در جریان بزار ...');
+                sendMessage(' ، اتصال به سرور برقرار نیست لطفا مدیر رو در جریان بزار ...');
                 exit;
             }
         	if($response == "inbound not Found"){
-                sendMessage("❌ | 🥺 سطر (inbound) با آیدی $inbound_id تو این سرور وجود نداره ، مدیر رو در جریان بزار ...");
+                sendMessage("سطر (inbound) با آیدی $inbound_id تو این سرور وجود نداره ، مدیر رو در جریان بزار ...");
         		exit;
         	}
         	if(!$response->success){
-                sendMessage('❌ | 😮 وای خطا داد لطفا سریع به مدیر بگو ...');
+                sendMessage(' خطا داد لطفا  به مدیر بگو ...');
                 sendMessage("خطای سرور {$serverInfo['title']}:\n\n" . ($response->msg), null, null, $admin);
                 exit;
             }
@@ -3699,18 +3699,18 @@ if(preg_match('/payWithWallet(.*)/',$data, $match)){
 
             foreach($vraylink as $link){
                 $acc_text = "
-😍 سفارش جدید شما
-📡 پروتکل: $protocol
-🔮 نام سرویس: $remark
-🔋حجم سرویس: $volume گیگ
-⏰ مدت سرویس: $days روز⁮⁮ ⁮⁮
+• سفارش جدید شما
+• پروتکل: $protocol
+•  نام سرویس: $remark
+• حجم سرویس: $volume گیگ
+• مدت سرویس: $days روز⁮⁮ ⁮⁮
 " . ($botState['configLinkState'] != "off" && $serverType != "marzban"?"
-💝 config : <code>$link</code>":"");
+• config : <code>$link</code>":"");
 if($botState['subLinkState'] == "on") $acc_text .= "
 
-🔋 Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
+• Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
 
-\n🌐 subscription : <code>$subLink</code>";
+\n subscription : <code>$subLink</code>";
             
                 $file = RandomString() .".png";
                 $ecc = 'L';
@@ -3947,7 +3947,7 @@ if($data=="availableServers"){
     }
     $keys[] = [['text'=>$buttonValues['back_button'],'callback_data'=>"mainMenu"]];
     $keys = json_encode(['inline_keyboard'=>$keys]);
-    editText($message_id, "🟢 | موجودی پلن اشتراکی:", $keys);
+    editText($message_id, " | موجودی پلن اشتراکی:", $keys);
 }
 if($data=="availableServers2"){
     $stmt = $connection->prepare("SELECT * FROM `server_plans` WHERE `inbound_id` = 0");
@@ -3985,7 +3985,7 @@ if($data=="availableServers2"){
     }
     $keys[] = [['text'=>$buttonValues['back_button'],'callback_data'=>"mainMenu"]];
     $keys = json_encode(['inline_keyboard'=>$keys]);
-    editText($message_id, "🟢 | موجودی پلن اختصاصی:", $keys);
+    editText($message_id, " | موجودی پلن اختصاصی:", $keys);
 }
 if($data=="agencySettings" && $userInfo['is_agent'] == 1){
     editText($message_id, $mainValues['agent_setting_message'] ,getAgentKeys());
@@ -4094,7 +4094,7 @@ if(preg_match('/accept(.*)/',$data, $match) and $text != $buttonValues['cancel']
         }
         
     	if(is_null($response)){
-    		alert('🔻مشکل فنی در اتصال به سرور. لطفا به مدیریت اطلاع بدید',true);
+    		alert('مشکل فنی در اتصال به سرور. لطفا به مدیریت اطلاع بدید',true);
     		exit;
     	}
     	$stmt = $connection->prepare("INSERT INTO `increase_order` VALUES (NULL, ?, ?, ?, ?, ?, ?);");
@@ -4102,7 +4102,7 @@ if(preg_match('/accept(.*)/',$data, $match) and $text != $buttonValues['cancel']
     	$stmt->execute();
     	$stmt->close();
         sendMessage(str_replace(["REMARK", "VOLUME", "DAYS"],[$remark, $volume, $days], $mainValues['renewed_config_to_user']), getMainKeys(),null,null);
-        sendMessage("✅سرویس $remark با موفقیت تمدید شد",null,null,$uid);
+        sendMessage("سرویس $remark با موفقیت تمدید شد",null,null,$uid);
     }else{
         $accountCount = $payInfo['agent_count'] != 0? $payInfo['agent_count']:1;
         $eachPrice = $price / $accountCount;
@@ -4200,15 +4200,15 @@ if(preg_match('/accept(.*)/',$data, $match) and $text != $buttonValues['cancel']
                 } 
             }
             if(is_null($response)){
-                sendMessage('❌ | 🥺 گلم ، اتصال به سرور برقرار نیست لطفا مدیر رو در جریان بزار ...');
+                sendMessage(' ، اتصال به سرور برقرار نیست لطفا مدیر رو در جریان بزار ...');
                 exit;
             }
         	if($response == "inbound not Found"){
-                sendMessage("❌ | 🥺 سطر (inbound) با آیدی $inbound_id تو این سرور وجود نداره ، مدیر رو در جریان بزار ...");
+                sendMessage("سطر (inbound) با آیدی $inbound_id تو این سرور وجود نداره ، مدیر رو در جریان بزار ...");
         		exit;
         	}
         	if(!$response->success){
-                sendMessage('❌ | 😮 وای خطا داد لطفا سریع به مدیر بگو ...');
+                sendMessage(' خطا داد لطفا  به مدیر بگو ...');
                 sendMessage("خطای سرور {$serverInfo['title']}:\n\n" . ($response->msg), null, null, $admin);
                 exit;
             }
@@ -4228,18 +4228,18 @@ if(preg_match('/accept(.*)/',$data, $match) and $text != $buttonValues['cancel']
             }
             foreach($vraylink as $link){
                 $acc_text = "
-😍 سفارش جدید شما
-📡 پروتکل: $protocol
-🔮 نام سرویس: $remark
-🔋حجم سرویس: $volume گیگ
-⏰ مدت سرویس: $days روز
+• سفارش جدید شما
+• پروتکل: $protocol
+• نام سرویس: $remark
+• حجم سرویس: $volume گیگ
+• مدت سرویس: $days روز
 " . ($botState['configLinkState'] != "off" && $serverType != "marzban"?"
-💝 config : <code>$link</code>":"");
+• config : <code>$link</code>":"");
 if($botState['subLinkState'] == "on") $acc_text .= "
 
-🔋 Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
+• Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
 
-\n🌐 subscription : <code>$subLink</code>";
+\n subscription : <code>$subLink</code>";
             
                 $file = RandomString() .".png";
                 $ecc = 'L';
@@ -4288,7 +4288,7 @@ if($botState['subLinkState'] == "on") $acc_text .= "
     }
 
     unset($markup[count($markup)-1]);
-    $markup[] = [['text'=>"✅",'callback_data'=>"wizwizch"]];
+    $markup[] = [['text'=>"",'callback_data'=>"wizwizch"]];
     $keys = json_encode(['inline_keyboard'=>array_values($markup)],488);
 
     editKeys($keys);
@@ -4323,7 +4323,7 @@ if($botState['subLinkState'] == "on") $acc_text .= "
         if($admin != $from_id){
             $keys = json_encode(['inline_keyboard'=>[
                 [
-                    ['text'=>"به به 🛍",'callback_data'=>"wizwizch"]
+                    ['text'=>"به به ",'callback_data'=>"wizwizch"]
                 ],
                 ]]);
                 
@@ -4336,26 +4336,26 @@ if($botState['subLinkState'] == "on") $acc_text .= "
 }
 if(preg_match('/decline/',$data) and ($from_id == $admin || $userInfo['isAdmin'] == true)){
     setUser($data . "_" . $message_id);
-    sendMessage('دلیلت از عدم تایید چیه؟ ( بفرس براش ) 😔 ',$cancelKey);
+    sendMessage('دلیلت از عدم تایید چیه؟ ( پیام مستقیم )  ',$cancelKey);
 }
 if(preg_match('/decline(\d+)_(\d+)/',$userInfo['step'],$match) && ($from_id == $admin || $userInfo['isAdmin'] == true) and $text != $buttonValues['cancel']){
     setUser();
     $uid = $match[1];
     editKeys(
         json_encode(['inline_keyboard'=>[
-	    [['text'=>"لغو شد ❌",'callback_data'=>"wizwizch"]]
+	    [['text'=>"لغو شد ",'callback_data'=>"wizwizch"]]
 	    ]]) ,$match[2]);
 
-    sendMessage('پیامت رو براش ارسال کردم ... 🤝',$removeKeyboard);
+    sendMessage('پیامت رو براش ارسال کردم ... ',$removeKeyboard);
     sendMessage($mainValues['reached_main_menu'],getMainKeys());
     
     sendMessage($text, null, null, $uid);
 }
 if($data=="supportSection"){
-    editText($message_id,"به بخش پشتیبانی خوش اومدی🛂\nلطفا، یکی از دکمه های زیر را انتخاب نمایید.",
+    editText($message_id,"به بخش پشتیبانی خوش اومدی\nلطفا، یکی از دکمه های زیر را انتخاب نمایید.",
         json_encode(['inline_keyboard'=>[
         [['text'=>"✉️ ثبت تیکت",'callback_data'=>"usersNewTicket"]],
-        [['text'=>"تیکت های باز 📨",'callback_data'=>"usersOpenTickets"],['text'=>"📮 لیست تیکت ها", 'callback_data'=>"userAllTickets"]],
+        [['text'=>"تیکت های باز ",'callback_data'=>"usersOpenTickets"],['text'=>" لیست تیکت ها", 'callback_data'=>"userAllTickets"]],
         [['text'=>$buttonValues['back_button'],'callback_data'=>"mainMenu"]]
         ]]));
 }
@@ -4385,9 +4385,9 @@ if($data== "usersNewTicket"){
         }
         $temp[] = ['text'=>$buttonValues['back_button'],'callback_data'=>"mainMenu"];
         array_push($keys,$temp);
-        editText($message_id,"💠لطفا واحد مورد نظر خود را انتخاب نمایید!",json_encode(['inline_keyboard'=>$keys]));
+        editText($message_id,"لطفا واحد مورد نظر خود را انتخاب نمایید!",json_encode(['inline_keyboard'=>$keys]));
     }else{
-        alert("ای وای، ببخشید الان نیستم");
+        alert("  الان نیستم");
     }
 }
 if($data == 'dayPlanSettings' and ($from_id == $admin || $userInfo['isAdmin'] == true)){
@@ -4413,11 +4413,11 @@ if($data == 'dayPlanSettings' and ($from_id == $admin || $userInfo['isAdmin'] ==
         $price=number_format($cat['price']) . " تومان";
         $acount =$cat['acount'];
 
-        $keyboard[] = [['text'=>"❌",'callback_data'=>"deleteDayPlan" . $id],['text'=>$price,'callback_data'=>"changeDayPlanPrice" . $id],['text'=>$title,'callback_data'=>"changeDayPlanDay" . $id]];
+        $keyboard[] = [['text'=>"",'callback_data'=>"deleteDayPlan" . $id],['text'=>$price,'callback_data'=>"changeDayPlanPrice" . $id],['text'=>$title,'callback_data'=>"changeDayPlanDay" . $id]];
     }
     $keyboard[] = [['text' => "افزودن پلن زمانی جدید", 'callback_data' =>"addNewDayPlan"]];
     $keyboard[] = [['text' => $buttonValues['back_button'], 'callback_data' => "backplan"]];
-    $msg = ' 📍 برای دیدن جزییات پلن زمانی روی آن بزنید👇';
+    $msg = '  برای دیدن جزییات پلن زمانی روی آن بزنید';
     
     editText($message_id,$msg,json_encode([
             'inline_keyboard' => $keyboard
@@ -4478,11 +4478,11 @@ if(preg_match('/^deleteDayPlan(\d+)/',$data,$match) and ($from_id == $admin || $
         $price=number_format($cat['price']) . " تومان";
         $acount =$cat['acount'];
 
-        $keyboard[] = [['text'=>"❌",'callback_data'=>"deleteDayPlan" . $id],['text'=>$price,'callback_data'=>"changeDayPlanPrice" . $id],['text'=>$title,'callback_data'=>"changeDayPlanDay" . $id]];
+        $keyboard[] = [['text'=>"",'callback_data'=>"deleteDayPlan" . $id],['text'=>$price,'callback_data'=>"changeDayPlanPrice" . $id],['text'=>$title,'callback_data'=>"changeDayPlanDay" . $id]];
     }
     $keyboard[] = [['text' => "افزودن پلن زمانی جدید", 'callback_data' =>"addNewDayPlan"]];
     $keyboard[] = [['text' => $buttonValues['back_button'], 'callback_data' => "managePanel"]];
-    $msg = ' 📍 برای دیدن جزییات پلن زمانی روی آن بزنید👇';
+    $msg = '  برای دیدن جزییات پلن زمانی روی آن بزنید';
     
     editText($message_id,$msg,json_encode([
             'inline_keyboard' => $keyboard
@@ -4504,7 +4504,7 @@ if(preg_match('/^changeDayPlanPrice(\d+)/',$userInfo['step'],$match) and $text !
         $stmt->execute();
         $stmt->close();
         
-        sendMessage("✅عملیات با موفقیت انجام شد",$removeKeyboard);
+        sendMessage("عملیات با موفقیت انجام شد",$removeKeyboard);
         
         $stmt = $connection->prepare("SELECT * FROM `increase_day`");
         $stmt->execute();
@@ -4528,11 +4528,11 @@ if(preg_match('/^changeDayPlanPrice(\d+)/',$userInfo['step'],$match) and $text !
             $price=number_format($cat['price']) . " تومان";
             $acount =$cat['acount'];
     
-            $keyboard[] = [['text'=>"❌",'callback_data'=>"deleteDayPlan" . $id],['text'=>$price,'callback_data'=>"changeDayPlanPrice" . $id],['text'=>$title,'callback_data'=>"changeDayPlanDay" . $id]];
+            $keyboard[] = [['text'=>"",'callback_data'=>"deleteDayPlan" . $id],['text'=>$price,'callback_data'=>"changeDayPlanPrice" . $id],['text'=>$title,'callback_data'=>"changeDayPlanDay" . $id]];
         }
         $keyboard[] = [['text' => "افزودن پلن زمانی جدید", 'callback_data' =>"addNewDayPlan"]];
         $keyboard[] = [['text' => $buttonValues['back_button'], 'callback_data' => "managePanel"]];
-        $msg = ' 📍 برای دیدن جزییات پلن زمانی روی آن بزنید👇';
+        $msg = '  برای دیدن جزییات پلن زمانی روی آن بزنید';
         
         sendMessage($msg,json_encode([
                 'inline_keyboard' => $keyboard
@@ -4556,7 +4556,7 @@ if(preg_match('/^changeDayPlanDay(\d+)/',$userInfo['step'],$match) && ($from_id 
     $stmt->execute();
     $stmt->close();
 
-    sendMessage("✅عملیات با موفقیت انجام شد",$removeKeyboard);
+    sendMessage("عملیات با موفقیت انجام شد",$removeKeyboard);
     
     $stmt = $connection->prepare("SELECT * FROM `increase_day`");
     $stmt->execute();
@@ -4580,11 +4580,11 @@ if(preg_match('/^changeDayPlanDay(\d+)/',$userInfo['step'],$match) && ($from_id 
         $price=number_format($cat['price']) . " تومان";
         $acount =$cat['acount'];
 
-        $keyboard[] = [['text'=>"❌",'callback_data'=>"deleteDayPlan" . $id],['text'=>$price,'callback_data'=>"changeDayPlanPrice" . $id],['text'=>$title,'callback_data'=>"changeDayPlanDay" . $id]];
+        $keyboard[] = [['text'=>"",'callback_data'=>"deleteDayPlan" . $id],['text'=>$price,'callback_data'=>"changeDayPlanPrice" . $id],['text'=>$title,'callback_data'=>"changeDayPlanDay" . $id]];
     }
     $keyboard[] = [['text' => "افزودن پلن زمانی جدید", 'callback_data' =>"addNewDayPlan"]];
     $keyboard[] = [['text' => $buttonValues['back_button'], 'callback_data' => "managePanel"]];
-    $msg = ' 📍 برای دیدن جزییات پلن زمانی روی آن بزنید👇';
+    $msg = '  برای دیدن جزییات پلن زمانی روی آن بزنید';
     
     sendMessage($msg,json_encode([
             'inline_keyboard' => $keyboard
@@ -4613,11 +4613,11 @@ if($data == 'volumePlanSettings' and ($from_id == $admin || $userInfo['isAdmin']
         $title = $cat['volume'];
         $price=number_format($cat['price']) . " تومان";
         
-        $keyboard[] = [['text'=>"❌",'callback_data'=>"deleteVolumePlan" . $id],['text'=>$price,'callback_data'=>"changeVolumePlanPrice" . $id],['text'=>$title,'callback_data'=>"changeVolumePlanVolume" . $id]];
+        $keyboard[] = [['text'=>"",'callback_data'=>"deleteVolumePlan" . $id],['text'=>$price,'callback_data'=>"changeVolumePlanPrice" . $id],['text'=>$title,'callback_data'=>"changeVolumePlanVolume" . $id]];
     }
     $keyboard[] = [['text' => "افزودن پلن حجمی جدید", 'callback_data' =>"addNewVolumePlan"]];
     $keyboard[] = [['text' =>$buttonValues['back_button'], 'callback_data' => "backplan"]];
-    $msg = ' 📍 برای دیدن جزییات پلن حجمی روی آن بزنید👇';
+    $msg = '  برای دیدن جزییات پلن حجمی روی آن بزنید';
     
     $res = editText($message_id, $msg,json_encode([
             'inline_keyboard' => $keyboard
@@ -4676,11 +4676,11 @@ if(preg_match('/^deleteVolumePlan(\d+)/',$data,$match) and ($from_id == $admin |
         $title = $cat['volume'];
         $price=number_format($cat['price']) . " تومان";
         
-        $keyboard[] = [['text'=>"❌",'callback_data'=>"deleteVolumePlan" . $id],['text'=>$price,'callback_data'=>"changeVolumePlanPrice" . $id],['text'=>$title,'callback_data'=>"changeVolumePlanVolume" . $id]];
+        $keyboard[] = [['text'=>"",'callback_data'=>"deleteVolumePlan" . $id],['text'=>$price,'callback_data'=>"changeVolumePlanPrice" . $id],['text'=>$title,'callback_data'=>"changeVolumePlanVolume" . $id]];
     }
     $keyboard[] = [['text' => "افزودن پلن حجمی جدید", 'callback_data' =>"addNewVolumePlan"]];
     $keyboard[] = [['text' =>$buttonValues['back_button'], 'callback_data' => "managePanel"]];
-    $msg = ' 📍 برای دیدن جزییات پلن حجمی روی آن بزنید👇';
+    $msg = '  برای دیدن جزییات پلن حجمی روی آن بزنید';
     
     $res = editText($message_id, $msg,json_encode([
             'inline_keyboard' => $keyboard
@@ -4722,11 +4722,11 @@ if(preg_match('/^changeVolumePlanPrice(\d+)/',$userInfo['step'],$match) and $tex
             $title = $cat['volume'];
             $price=number_format($cat['price']) . " تومان";
             
-            $keyboard[] = [['text'=>"❌",'callback_data'=>"deleteVolumePlan" . $id],['text'=>$price,'callback_data'=>"changeVolumePlanPrice" . $id],['text'=>$title,'callback_data'=>"changeVolumePlanVolume" . $id]];
+            $keyboard[] = [['text'=>"",'callback_data'=>"deleteVolumePlan" . $id],['text'=>$price,'callback_data'=>"changeVolumePlanPrice" . $id],['text'=>$title,'callback_data'=>"changeVolumePlanVolume" . $id]];
         }
         $keyboard[] = [['text' => "افزودن پلن حجمی جدید", 'callback_data' =>"addNewVolumePlan"]];
         $keyboard[] = [['text' =>$buttonValues['back_button'], 'callback_data' => "managePanel"]];
-        $msg = ' 📍 برای دیدن جزییات پلن حجمی روی آن بزنید👇';
+        $msg = '  برای دیدن جزییات پلن حجمی روی آن بزنید';
         
         $res = sendMessage($msg,json_encode([
                 'inline_keyboard' => $keyboard
@@ -4747,7 +4747,7 @@ if(preg_match('/^changeVolumePlanVolume(\d+)/',$userInfo['step'], $match) and $t
     $stmt->bind_param("ii", $text, $pid);
     $stmt->execute();
     $stmt->close();
-    sendMessage("✅عملیات با موفقیت انجام شد",$removeKeyboard);
+    sendMessage("عملیات با موفقیت انجام شد",$removeKeyboard);
     setUser();
 
     $stmt = $connection->prepare("SELECT * FROM `increase_plan`");
@@ -4770,11 +4770,11 @@ if(preg_match('/^changeVolumePlanVolume(\d+)/',$userInfo['step'], $match) and $t
         $title = $cat['volume'];
         $price=number_format($cat['price']) . " تومان";
         
-        $keyboard[] = [['text'=>"❌",'callback_data'=>"deleteVolumePlan" . $id],['text'=>$price,'callback_data'=>"changeVolumePlanPrice" . $id],['text'=>$title,'callback_data'=>"changeVolumePlanVolume" . $id]];
+        $keyboard[] = [['text'=>"",'callback_data'=>"deleteVolumePlan" . $id],['text'=>$price,'callback_data'=>"changeVolumePlanPrice" . $id],['text'=>$title,'callback_data'=>"changeVolumePlanVolume" . $id]];
     }
     $keyboard[] = [['text' => "افزودن پلن حجمی جدید", 'callback_data' =>"addNewVolumePlan"]];
     $keyboard[] = [['text' =>$buttonValues['back_button'], 'callback_data' => "managePanel"]];
-    $msg = ' 📍 برای دیدن جزییات پلن حجمی روی آن بزنید👇';
+    $msg = '  برای دیدن جزییات پلن حجمی روی آن بزنید';
     
     $res = sendMessage( $msg,json_encode([
             'inline_keyboard' => $keyboard
@@ -4894,13 +4894,13 @@ if($data== "usersOpenTickets" || $data == "userAllTickets"){
                 $info = json_decode($lastmsg,true);
                 $fileid = $info['file_id'];
                 $caption = $info['caption'];
-                $txt ="🔘 موضوع: $title
+                $txt =" موضوع: $title
             		💭 دسته بندی:  {$category}
             		\n
             		$sentType : $caption";
                 sendPhoto($fileid, $txt,json_encode(['inline_keyboard'=>$keys]), "HTML");
             }else{
-                sendMessage(" 🔘 موضوع: $title
+                sendMessage("  موضوع: $title
             		💭 دسته بندی:  {$category}
             		\n
             		$sentType : $lastmsg",json_encode(['inline_keyboard'=>$keys]),"HTML");
@@ -4970,12 +4970,12 @@ if(preg_match('/^closeTicket_(\d+)/',$data,$match) and  $from_id != $admin){
             ['text'=>"دسته بندی",'callback_data'=>'wizwizch']
         ],
         ]]);
-    sendMessage("☑️| تیکت توسط کاربر بسته شد",$keys,"HTML",$admin);
+    sendMessage("•| تیکت توسط کاربر بسته شد",$keys,"HTML",$admin);
 
 }
 if(preg_match('/^replySupport_(.*)/',$data,$match)){
     delMessage();
-    sendMessage("💠لطفا متن پیام خود را بصورت ساده و مختصر ارسال کنید!",$cancelKey);
+    sendMessage("لطفا متن پیام خود را بصورت ساده و مختصر ارسال کنید!",$cancelKey);
 	setUser("sendMsg_" . $match[1]);
 }
 if(preg_match('/^sendMsg_(.*)/',$userInfo['step'],$match)  and $text!=$buttonValues['cancel']){
@@ -5037,7 +5037,7 @@ if(preg_match("/^rate_+([0-9])+_+([0-9])/",$data,$match)){
     $stmt->bind_param("i", $rowChatId);
     $stmt->execute();
     $stmt->close();
-    editText($message_id,"✅");
+    editText($message_id,"");
     
     $keys = json_encode(['inline_keyboard'=>[
         [
@@ -5046,11 +5046,11 @@ if(preg_match("/^rate_+([0-9])+_+([0-9])/",$data,$match)){
         ]]);
 
     sendMessage("
-📨|رأی به تیکت 
+|رأی به تیکت 
 
-👤 آیدی عددی: $from_id
+• آیدی عددی: $from_id
 ❕نام کاربر: $first_name
-❗️نام کاربری: $username
+نام کاربری: $username
 〽️ عنوان: $title
 ⚜️ دسته بندی: $category
 ❤️ رای: $rate
@@ -5086,7 +5086,7 @@ if($data=='ticketsCategory' and ($from_id == $admin || $userInfo['isAdmin'] == t
         while($row = $ticketCategory->fetch_assoc()){
             $rowId = $row['id'];
             $ticketName = $row['value'];
-            $keys[] = [['text'=>"❌",'callback_data'=>"delTicketCat_$rowId"],['text'=>$ticketName,'callback_data'=>"wizwizch"]];
+            $keys[] = [['text'=>"",'callback_data'=>"delTicketCat_$rowId"],['text'=>$ticketName,'callback_data'=>"wizwizch"]];
         }
     }else{
         $keys[] = [['text'=>"دسته بندی یافت نشد",'callback_data'=>"wizwizch"]];
@@ -5121,7 +5121,7 @@ if ($userInfo['step']=="addTicketCategory" and ($from_id == $admin || $userInfo[
             
             $rowId = $row['id'];
             $ticketName = $row['value'];
-            $keys[] = [['text'=>"❌",'callback_data'=>"delTicketCat_$rowId"],['text'=>$ticketName,'callback_data'=>"wizwizch"]];
+            $keys[] = [['text'=>"",'callback_data'=>"delTicketCat_$rowId"],['text'=>$ticketName,'callback_data'=>"wizwizch"]];
         }
     }else{
         $keys[] = [['text'=>"دسته بندی یافت نشد",'callback_data'=>"wizwizch"]];
@@ -5154,7 +5154,7 @@ if(preg_match("/^delTicketCat_(\d+)/",$data,$match) and ($from_id == $admin || $
             
             $rowId = $row['id'];
             $ticketName = $row['value'];
-            $keys[] = [['text'=>"❌",'callback_data'=>"delTicketCat_$rowId"],['text'=>$ticketName,'callback_data'=>"wizwizch"]];
+            $keys[] = [['text'=>"",'callback_data'=>"delTicketCat_$rowId"],['text'=>$ticketName,'callback_data'=>"wizwizch"]];
         }
     }else{
         $keys[] = [['text'=>"دسته بندی یافت نشد",'callback_data'=>"wizwizch"]];
@@ -5375,7 +5375,7 @@ if(preg_match('/^\/dlPic(\d+)/',$text,$match)){
 }
 if($data == "banUser" && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     delMessage();
-    sendMessage("😡 | کی باز شلوغی کرده آیدی عددی شو بفرس تا برم ...... آرهههه:", $cancelKey);
+    sendMessage(" | کی باز شلوغی کرده آیدی عددی شو بفرس تا برم ...... آرهههه:", $cancelKey);
     setUser($data);
 }
 if($data=="unbanUser" && ($from_id == $admin || $userInfo['isAdmin'] == true)){
@@ -5400,9 +5400,9 @@ if($userInfo['step'] == "banUser" && ($from_id == $admin || $userInfo['isAdmin']
                 $stmt->execute();
                 $stmt->close();
                 
-                sendMessage("❌ | خب خب برید کنار که مسدودش کردم 😎😂",$removeKeyboard);
+                sendMessage(" | خب خب برید کنار که مسدودش کردم 😎😂",$removeKeyboard);
             }else{
-                sendMessage("☑️ | این کاربر که از قبل مسدود بود چیکارش داری بدبخت و 😂🤣",$removeKeyboard);
+                sendMessage("• | این کاربر که از قبل مسدود بود چیکارش داری بدبخت و 😂🤣",$removeKeyboard);
             }
         }else sendMessage("کاربری با این آیدی یافت نشد");
         setUser();
@@ -5467,9 +5467,9 @@ if($userInfo['step'] == "unbanUser" && ($from_id == $admin || $userInfo['isAdmin
                 $stmt->execute();
                 $stmt->close();
 
-                sendMessage("✅ | آزاد شدم خوشحالم ننه ، ایشالا آزادی همه 😂",$removeKeyboard);
+                sendMessage(" | آزاد شدم خوشحالم ننه ، ایشالا آزادی همه 😂",$removeKeyboard);
             }else{
-                sendMessage("☑️ | این کاربری که فرستادی از قبل آزاد بود 🙁",$removeKeyboard);
+                sendMessage("• | این کاربری که فرستادی از قبل آزاد بود 🙁",$removeKeyboard);
             }
         }else sendMessage("کاربری با این آیدی یافت نشد");
         setUser();
@@ -5534,7 +5534,7 @@ if(preg_match('/^answer_(.*)/',$userInfo['step'],$match) and  $from_id ==$admin 
     $stmt->close();
     
     setUser();
-    sendMessage("پیام شما با موفقیت ارسال شد ✅",$removeKeyboard);
+    sendMessage("پیام شما با موفقیت ارسال شد ",$removeKeyboard);
 }
 if(preg_match('/freeTrial(\d+)/',$data,$match)) {
     $id = $match[1];
@@ -5664,15 +5664,15 @@ if(preg_match('/freeTrial(\d+)/',$data,$match)) {
         }
     }
     if(is_null($response)){
-        alert('❌ | 🥺 گلم ، اتصال به سرور برقرار نیست لطفا مدیر رو در جریان بزار ...');
+        alert(' ، اتصال به سرور برقرار نیست لطفا مدیر رو در جریان بزار ...');
         exit;
     }
 	if($response == "inbound not Found"){
-        alert("❌ | 🥺 سطر (inbound) با آیدی $inbound_id تو این سرور وجود نداره ، مدیر رو در جریان بزار ...");
+        alert("سطر (inbound) با آیدی $inbound_id تو این سرور وجود نداره ، مدیر رو در جریان بزار ...");
 		exit;
 	}
 	if(!$response->success){
-        alert('❌ | 😮 وای خطا داد لطفا سریع به مدیر بگو ...');
+        alert(' خطا داد لطفا  به مدیر بگو ...');
         sendMessage("خطای سرور {$serverInfo['title']}:\n\n" . ($response->msg), null, null, $admin);
         exit;
     }
@@ -5694,18 +5694,18 @@ if(preg_match('/freeTrial(\d+)/',$data,$match)) {
     define('IMAGE_HEIGHT',540);
     foreach($vraylink as $link){
         $acc_text = "
-😍 سفارش جدید شما
-📡 پروتکل: $protocol
-🔮 نام سرویس: $remark
-🔋حجم سرویس: $volume گیگ
-⏰ مدت سرویس: $days روز
+• سفارش جدید شما
+• پروتکل: $protocol
+ نام سرویس: $remark
+•حجم سرویس: $volume گیگ
+• مدت سرویس: $days روز
 " . ($botState['configLinkState'] != "off" && $serverType != "marzban"?"
-💝 config : <code>$link</code>":"");
+• config : <code>$link</code>":"");
 if($botState['subLinkState'] == "on") $acc_text .= "
 
-🔋 Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
+• Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
 
-\n🌐 subscription : <code>$subLink</code>";
+\n subscription : <code>$subLink</code>";
     
         $file = RandomString().".png";
         $ecc = 'L'; 
@@ -5777,14 +5777,14 @@ if(preg_match('/^marzbanHostSettings(\d+)/',$data,$match) && ($from_id == $admin
     editText($message_id, "لطفا نوع شبکه های این پلن را انتخاب کنید",$networkType);
 }
 if(preg_match('/^selectHost(?<planId>\d+)\*_\*(?<protocol>.+)\*_\*(?<tag>.*)/',$data,$match) && ($from_id == $admin || $userInfo['isAdmin'] == true)){
-    $saveBtn = "ذخیره ✅";
+    $saveBtn = "ذخیره ";
     unset($markup[count($markup)-1]);
     if($markup[count($markup)-1][0]['text'] == $saveBtn) unset($markup[count($markup)-1]);
     foreach($markup as $key => $keyboard){
-        if($keyboard[0]['callback_data'] == $data) $markup[$key][0]['text'] = $keyboard['0']['text'] == $match['tag'] . " ✅" ? $match['tag']:$match['tag'] . " ✅";
+        if($keyboard[0]['callback_data'] == $data) $markup[$key][0]['text'] = $keyboard['0']['text'] == $match['tag'] . " " ? $match['tag']:$match['tag'] . " ";
     }
         
-    if(strstr(json_encode($markup,JSON_UNESCAPED_UNICODE), "✅") && !strstr(json_encode($markup,JSON_UNESCAPED_UNICODE), $saveBtn)){
+    if(strstr(json_encode($markup,JSON_UNESCAPED_UNICODE), "") && !strstr(json_encode($markup,JSON_UNESCAPED_UNICODE), $saveBtn)){
         $markup[] = [['text'=>$saveBtn,'callback_data'=>"saveServerHost" . $match['planId']]];
     }
     $markup[] = [['text'=>$buttonValues['cancel'], 'callback_data'=>"planDetails" . $match['planId']]];
@@ -5798,7 +5798,7 @@ if(preg_match('/^saveServerHost(\d+)/',$data,$match) && ($from_id == $admin || $
     unset($markup[count($markup)-1]);
     
     foreach($markup as $key=>$value){
-        $tag = trim(str_replace("✅", "", $value[0]['text'], $state));
+        $tag = trim(str_replace("", "", $value[0]['text'], $state));
         if($state > 0){
             preg_match('/^selectHost(?<serverId>\d+)\*_\*(?<protocol>.+)\*_\*(?<tag>.*)/',$value[0]['callback_data'],$info);
             $inbounds[$info['protocol']][] = $tag;
@@ -6070,13 +6070,13 @@ if($userInfo['step'] == "showAccount" and $text != $buttonValues['cancel']){
         }
     }
     if(!$found){
-         sendMessage("ای وای ، اطلاعاتت اشتباهه 😔",$cancelKey);
+         sendMessage("ای  ، اطلاعاتت اشتباهه ",$cancelKey);
     }else{
         setUser();
         $keys = json_encode(['inline_keyboard'=>array_merge([
         [
             ['text'=>$state??" ",'callback_data'=>"wizwizch"],
-            ['text'=>"🔘 وضعیت اکانت 🔘",'callback_data'=>"wizwizch"],
+            ['text'=>" وضعیت اکانت ",'callback_data'=>"wizwizch"],
             ],
         [
     		['text'=>$remark??" ",'callback_data'=>"wizwizch"],
@@ -6129,7 +6129,7 @@ if($userInfo['step'] == "showAccount" and $text != $buttonValues['cancel']){
         [['text'=>"صفحه اصلی",'callback_data'=>"mainMenu"]]
         ])]);
         setUser(json_encode($configLocation,488), "temp");
-        sendMessage("🔰مشخصات حسابت:",$keys,"MarkDown");
+        sendMessage("•مشخصات حسابت:",$keys,"MarkDown");
     }
 }
 
@@ -6205,10 +6205,10 @@ if(preg_match('/sConfigRenew(\d+)/', $data,$match)){
         }
         $keyboard[] = ['text' => $buttonValues['back_to_main'], 'callback_data' => "mainMenu"];
         $keyboard = array_chunk($keyboard,1);
-        editText($message_id, "3️⃣ مرحله سه:
+        editText($message_id, " مرحله سه:
 
-یکی از پلن هارو انتخاب کن و برو برای پرداختش 🤲 🕋", json_encode(['inline_keyboard'=>$keyboard]));
-    }else sendMessage("💡پلنی در این دسته بندی وجود ندارد ");
+یکی از پلن  ها را انتخاب کن و برو برای پرداختش  ", json_encode(['inline_keyboard'=>$keyboard]));
+    }else sendMessage("پلنی در این دسته بندی وجود ندارد ");
 }
 if(preg_match('/sConfigRenewPlan(\d+)_(\d+)/',$data, $match) && ($botState['sellState']=="on" ||$from_id ==$admin) && $text != $buttonValues['cancel']){
     $id = $match[1];
@@ -6359,7 +6359,7 @@ if (($data == 'addNewPlan' || $data=="addNewRahgozarPlan" || $data == "addNewMar
     $stmt->execute();
     $stmt->close();
     delMessage();
-    $msg = '❗️یه عنوان برا پلن انتخاب کن:';
+    $msg = 'یه عنوان برا پلن انتخاب کن:';
     sendMessage($msg,$cancelKey);
     exit;
 }
@@ -6380,7 +6380,7 @@ if(preg_match('/(addNewRahgozarPlan|addNewPlan|addNewMarzbanPlan)/',$userInfo['s
     $step = checkStep('server_plans');
 
     if($step==1 and $text!=$buttonValues['cancel']){
-        $msg = '🔰 لطفا قیمت پلن رو به تومان وارد کنید!';
+        $msg = '• لطفا قیمت پلن رو به تومان وارد کنید!';
         if(strlen($text)>1){
             $stmt = $connection->prepare("UPDATE `server_plans` SET `title`=?,`step`=2 WHERE `active`=0 and `step`=1");
             $stmt->bind_param("s", $text);
@@ -6390,7 +6390,7 @@ if(preg_match('/(addNewRahgozarPlan|addNewPlan|addNewMarzbanPlan)/',$userInfo['s
         }
     } 
     if($step==2 and $text!=$buttonValues['cancel']){
-        $msg = '🔰لطفا یه دسته از لیست زیر برا پلن انتخاب کن ';
+        $msg = '•لطفا یه دسته از لیست زیر برا پلن انتخاب کن ';
         if(is_numeric($text)){
             $stmt = $connection->prepare("UPDATE `server_plans` SET `price`=?,`step`=3 WHERE `active`=0");
             $stmt->bind_param("s", $text);
@@ -6429,7 +6429,7 @@ if(preg_match('/(addNewRahgozarPlan|addNewPlan|addNewMarzbanPlan)/',$userInfo['s
             $srvkey[] = ['text' => "$title", 'callback_data' => "selectNewPlanServer$id"];
         }
         $srvkey = array_chunk($srvkey,2);
-        sendMessage("لطفا یکی از سرورها رو انتخاب کن 👇 ", json_encode([
+        sendMessage("لطفا یکی از سرورها راانتخاب کن  ", json_encode([
                 'inline_keyboard' => $srvkey]), "HTML");
         $inarr = 0;
         foreach ($catkey as $op) {
@@ -6467,8 +6467,8 @@ if(preg_match('/(addNewRahgozarPlan|addNewPlan|addNewMarzbanPlan)/',$userInfo['s
         else editText($message_id, "📅 | لطفا تعداد روز های اعتبار این پلن را وارد کنید:");
     }
     if($step==51 and $text!=$buttonValues['cancel'] and preg_match('/^with(Specific|Shared)Port/',$data,$match)){
-        if($userInfo['step'] == "addNewRahgozarPlan") $msg =  "📡 | لطفا پروتکل پلن مورد نظر را وارد کنید (vless | vmess)";
-        else $msg =  "📡 | لطفا پروتکل پلن مورد نظر را وارد کنید (vless | vmess | trojan)";
+        if($userInfo['step'] == "addNewRahgozarPlan") $msg =  "• | لطفا پروتکل پلن مورد نظر را وارد کنید (vless | vmess)";
+        else $msg =  "• | لطفا پروتکل پلن مورد نظر را وارد کنید (vless | vmess | trojan)";
         editText($message_id,$msg);
         if($match[1] == "Shared"){
             $stmt = $connection->prepare("UPDATE `server_plans` SET `step`=60 WHERE `active`=0");
@@ -6508,7 +6508,7 @@ if(preg_match('/(addNewRahgozarPlan|addNewPlan|addNewMarzbanPlan)/',$userInfo['s
         $stmt->execute();
         $stmt->close();
 
-        sendMessage("🔋 | لطفا مقدار حجم به GB این پلن را وارد کنید:");
+        sendMessage("• | لطفا مقدار حجم به GB این پلن را وارد کنید:");
     }
     if($step==62 and $text!=$buttonValues['cancel']){
         if(!is_numeric($text)){
@@ -6575,7 +6575,7 @@ if(preg_match('/(addNewRahgozarPlan|addNewPlan|addNewMarzbanPlan)/',$userInfo['s
         $stmt->execute();
         $stmt->close();
 
-        $msg = '🔻یه توضیح برای پلن مورد نظرت بنویس:';
+        $msg = 'یه توضیح برای پلن مورد نظرت بنویس:';
         sendMessage($msg,$cancelKey); 
     }
     if($step==52 and $text!=$buttonValues['cancel']){
@@ -6605,7 +6605,7 @@ if(preg_match('/(addNewRahgozarPlan|addNewPlan|addNewMarzbanPlan)/',$userInfo['s
         $stmt->execute();
         $stmt->close();
 
-        sendMessage("🔋 | لطفا مقدار حجم به GB این پلن را وارد کنید:");
+        sendMessage("• | لطفا مقدار حجم به GB این پلن را وارد کنید:");
     }
     if($step==54 and $text!=$buttonValues['cancel']){
         if(!is_numeric($text)){
@@ -6618,7 +6618,7 @@ if(preg_match('/(addNewRahgozarPlan|addNewPlan|addNewMarzbanPlan)/',$userInfo['s
             $msg = "🔉 | لطفا نوع شبکه این پلن را در انتخاب کنید  (ws | tcp | grpc) :";
         }elseif($userInfo['step'] == "addNewRahgozarPlan" || $userInfo['step'] == "addNewMarzbanPlan"){
             $sql = ("UPDATE `server_plans` SET `volume`=?, `type`='ws', `step`=4 WHERE `active`=0");
-            $msg = '🔻یه توضیح برای پلن مورد نظرت بنویس:';
+            $msg = 'یه توضیح برای پلن مورد نظرت بنویس:';
         }
         $stmt = $connection->prepare($sql);
         $stmt->bind_param("d", $text);
@@ -6638,7 +6638,7 @@ if(preg_match('/(addNewRahgozarPlan|addNewPlan|addNewMarzbanPlan)/',$userInfo['s
         $stmt->close();
 
 
-        $msg = '🔻یه توضیح برای پلن مورد نظرت بنویس:';
+        $msg = 'یه توضیح برای پلن مورد نظرت بنویس:';
         sendMessage($msg,$cancelKey); 
     }
     
@@ -6662,7 +6662,7 @@ if(preg_match('/(addNewRahgozarPlan|addNewPlan|addNewMarzbanPlan)/',$userInfo['s
         }
         else{
             $stmt = $connection->prepare("UPDATE `server_plans` SET `descr`=?, `active`=1,`step`=10 WHERE `step`=4");
-            $imgtxt = '☑️ | پنل با موفقیت ثبت و ایجاد شد ( لذت ببرید ) ';
+            $imgtxt = '• | پنل با موفقیت ثبت و ایجاد شد ( لذت ببرید ) ';
             
             sendMessage($imgtxt,$removeKeyboard);
             sendMessage($mainValues['reached_main_menu'],getAdminKeys());
@@ -6674,14 +6674,14 @@ if(preg_match('/(addNewRahgozarPlan|addNewPlan|addNewMarzbanPlan)/',$userInfo['s
 
     } 
     elseif($step == 5 and $text != $buttonValues['cancel'] && preg_match('/^planNetworkType(?<protocol>.+)\*_\*(?<tag>.*)/',$data,$match)){
-        $saveBtn = "ذخیره ✅";
+        $saveBtn = "ذخیره ";
         if($markup[count($markup)-1][0]['text'] == $saveBtn) unset($markup[count($markup)-1]);
 
         foreach($markup as $key => $keyboard){
-            if($keyboard[0]['callback_data'] == $data) $markup[$key][0]['text'] = $keyboard['0']['text'] == $match['tag'] . " ✅" ? $match['tag']:$match['tag'] . " ✅";
+            if($keyboard[0]['callback_data'] == $data) $markup[$key][0]['text'] = $keyboard['0']['text'] == $match['tag'] . " " ? $match['tag']:$match['tag'] . " ";
         }
 
-        if(strstr(json_encode($markup,JSON_UNESCAPED_UNICODE), "✅") && !strstr(json_encode($markup,JSON_UNESCAPED_UNICODE), $saveBtn)){
+        if(strstr(json_encode($markup,JSON_UNESCAPED_UNICODE), "") && !strstr(json_encode($markup,JSON_UNESCAPED_UNICODE), $saveBtn)){
             $markup[] = [['text'=>$saveBtn,'callback_data'=>"savePlanNetworkType"]];
         }
         $markup = json_encode(['inline_keyboard'=>array_values($markup)]);
@@ -6695,7 +6695,7 @@ if(preg_match('/(addNewRahgozarPlan|addNewPlan|addNewMarzbanPlan)/',$userInfo['s
         unset($markup[count($markup)-1]);
 
         foreach($markup as $key=>$value){
-            $tag = trim(str_replace("✅", "", $value[0]['text'], $state));
+            $tag = trim(str_replace("", "", $value[0]['text'], $state));
             if($state > 0){
                 preg_match('/^planNetworkType(?<protocol>.+)\*_\*(?<tag>.*)/',$value[0]['callback_data'],$info);
                 $inbounds[$info['protocol']][] = $tag;
@@ -6716,7 +6716,7 @@ if(preg_match('/(addNewRahgozarPlan|addNewPlan|addNewMarzbanPlan)/',$userInfo['s
         $stmt->execute();
         $stmt->close();
         
-        $imgtxt = '☑️ | پنل با موفقیت ثبت و ایجاد شد ( لذت ببرید ) ';
+        $imgtxt = '• | پنل با موفقیت ثبت و ایجاد شد ( لذت ببرید ) ';
         sendMessage($imgtxt,$removeKeyboard);
         sendMessage($mainValues['reached_main_menu'],getAdminKeys());
         setUser();
@@ -6745,7 +6745,7 @@ if($data == 'backplan' and ($from_id == $admin || $userInfo['isAdmin'] == true))
     $keyboard[] = [['text' => "➕ افزودن پلن دلخواه", 'callback_data' => "editCustomPlan"]];
     $keyboard[] = [['text' => $buttonValues['back_button'], 'callback_data' => "managePanel"]];
 
-    $msg = ' ☑️ مدیریت پلن ها:';
+    $msg = ' • مدیریت پلن ها:';
     
     if(isset($data) and $data=='backplan') {
         editText($message_id, $msg, json_encode(['inline_keyboard'=>$keyboard]));
@@ -6815,7 +6815,7 @@ if(preg_match('/plansList(\d+)/', $data,$match) && ($from_id == $admin || $userI
         }
         $keyboard = array_chunk($keyboard,2);
         $keyboard[] = [['text' => $buttonValues['back_button'], 'callback_data' => "backplan"],];
-        $msg = ' ▫️ یه پلن رو انتخاب کن بریم برای ادیت:';
+        $msg = ' • یه پلن رو انتخاب کن بریم برای ادیت:';
         editText($message_id, $msg, json_encode(['inline_keyboard'=>$keyboard]), "HTML");
     }
     exit();
@@ -6855,7 +6855,7 @@ if(preg_match('/^wizwizplanacclist(\d+)/',$data,$match) and ($from_id == $admin 
         $sold = " 🚀 ".$uname. " ($date)";
         $accid = $order['id'];
         $orderLink = json_decode($order['link'],true);
-        $txt = "$sold \n  ☑️ $remark ";
+        $txt = "$sold \n  • $remark ";
         foreach($orderLink as $link){
             $txt .= $botState['configLinkState'] != "off"?"<code>".$link."</code> \n":"";
         }
@@ -6868,7 +6868,7 @@ if(preg_match('/^wizwizplandelete(\d+)/',$data,$match) and ($from_id == $admin |
     $stmt->bind_param("i", $match[1]);
     $stmt->execute();
     $stmt->close();
-    alert("پلن رو برات حذفش کردم ☹️☑️");
+    alert("پلن رو برات حذفش کردم ☹️•");
     
     editText($message_id,"لطفا یکی از کلید های زیر را انتخاب کنید",getMainKeys());
 }
@@ -6883,7 +6883,7 @@ if(preg_match('/^wizwizplanname(\d+)/',$userInfo['step'], $match) && $text != $b
     $stmt->execute();
     $stmt->close();
 
-    sendMessage("با موفقیت برات تغییر دادم ☺️☑️");
+    sendMessage("با موفقیت برات تغییر دادم ☺️•");
     setUser();
     
     $keys = getPlanDetailsKeys($match[1]);
@@ -6903,7 +6903,7 @@ if(preg_match('/^wizwizplanslimit(\d+)/',$userInfo['step'], $match) && $text != 
     $stmt->execute();
     $stmt->close();
 
-    sendMessage("با موفقیت برات تغییر دادم ☺️☑️");
+    sendMessage("با موفقیت برات تغییر دادم ☺️•");
     setUser();
     
     $keys = getPlanDetailsKeys($match[1]);
@@ -6923,7 +6923,7 @@ if(preg_match('/^wizwizplansinobundid(\d+)/',$userInfo['step'], $match) && ($fro
     $stmt->execute();
     $stmt->close();
 
-    sendMessage("با موفقیت برات تغییر دادم ☺️☑️");
+    sendMessage("با موفقیت برات تغییر دادم ☺️•");
     setUser();
     
     $keys = getPlanDetailsKeys($match[1]);
@@ -6944,7 +6944,7 @@ if(preg_match('/^wizwizplaneditdes(\d+)/',$userInfo['step'], $match) && ($from_i
     $stmt->close();
 
 
-    sendMessage("با موفقیت برات تغییر دادم ☺️☑️");
+    sendMessage("با موفقیت برات تغییر دادم ☺️•");
     setUser();
     
     $keys = getPlanDetailsKeys($match[1]);
@@ -6970,7 +6970,7 @@ if(preg_match('/^editDestName(\d+)/',$userInfo['step'], $match) && ($from_id == 
     $stmt->close();
 
 
-    sendMessage("با موفقیت برات تغییر دادم ☺️☑️");
+    sendMessage("با موفقیت برات تغییر دادم ☺️•");
     setUser();
     
     $keys = getPlanDetailsKeys($match[1]);
@@ -6996,7 +6996,7 @@ if(preg_match('/^editSpiderX(\d+)/',$userInfo['step'], $match) && ($from_id == $
     $stmt->close();
 
 
-    sendMessage("با موفقیت برات تغییر دادم ☺️☑️");
+    sendMessage("با موفقیت برات تغییر دادم ☺️•");
     setUser();
     
     $keys = getPlanDetailsKeys($match[1]);
@@ -7027,7 +7027,7 @@ if(preg_match('/^editServerNames(\d+)/',$userInfo['step'], $match) && ($from_id 
     $stmt->close();
 
 
-    sendMessage("با موفقیت برات تغییر دادم ☺️☑️");
+    sendMessage("با موفقیت برات تغییر دادم ☺️•");
     setUser();
     
     $keys = getPlanDetailsKeys($match[1]);
@@ -7051,7 +7051,7 @@ if(preg_match('/^editPFlow(\d+)_(.*)/',$data, $match) && ($from_id == $admin || 
     $stmt->execute();
     $stmt->close();
 
-    alert("با موفقیت برات تغییر دادم ☺️☑️");
+    alert("با موفقیت برات تغییر دادم ☺️•");
     setUser();
     
     $keys = getPlanDetailsKeys($match[1]);
@@ -7069,7 +7069,7 @@ if(preg_match('/^wizwizplanrial(\d+)/',$userInfo['step'], $match) && ($from_id =
         $stmt->execute();
         $stmt->close();
 
-        sendMessage("با موفقیت برات تغییر دادم ☺️☑️");
+        sendMessage("با موفقیت برات تغییر دادم ☺️•");
         setUser();
         
         $keys = getPlanDetailsKeys($match[1]);
@@ -7708,7 +7708,7 @@ if(preg_match('/^discountRenew(\d+)_(\d+)/',$userInfo['step'], $match) || preg_m
     if($botState['walletState'] == "on") $keyboard[] = [['text' => "پرداخت با موجودی مبلغ $price",  'callback_data' => "payRenewWithWallet$hash_id"]];
     if($botState['tronWallet'] == "on") $keyboard[] = [['text' => $buttonValues['tron_gateway'],  'callback_data' => "payWithTronWallet" . $hash_id]];
 
-    if(!preg_match('/^discountRenew/', $userInfo['step'])) $keyboard[] = [['text' => " 🎁 نکنه کد تخفیف داری؟ ",  'callback_data' => "haveDiscountRenew_" . $match[1] . "_" . $rowId]];
+    if(!preg_match('/^discountRenew/', $userInfo['step'])) $keyboard[] = [['text' => " وارد کردن کد تخقیف ",  'callback_data' => "haveDiscountRenew_" . $match[1] . "_" . $rowId]];
 
     $keyboard[] = [['text'=>$buttonValues['cancel'], 'callback_data'=> "mainMenu"]];
 
@@ -7842,7 +7842,7 @@ if(preg_match('/approveRenewAcc(.*)/',$data,$match) && ($from_id == $admin || $u
 
 
     unset($markup[count($markup)-1]);
-    $markup[] = [['text'=>"✅",'callback_data'=>"wizwizch"]];
+    $markup[] = [['text'=>"",'callback_data'=>"wizwizch"]];
     $keys = json_encode(['inline_keyboard'=>array_values($markup)],488);
 
     $stmt = $connection->prepare("SELECT * FROM server_config WHERE id=?");
@@ -7865,7 +7865,7 @@ if(preg_match('/approveRenewAcc(.*)/',$data,$match) && ($from_id == $admin || $u
     }
     
 	if(is_null($response)){
-		alert('🔻مشکل فنی در اتصال به سرور. لطفا به مدیریت اطلاع بدید',true);
+		alert('مشکل فنی در اتصال به سرور. لطفا به مدیریت اطلاع بدید',true);
 		exit;
 	}
 	$stmt = $connection->prepare("UPDATE `orders_list` SET `expire_date` = ?, `notif` = 0 WHERE `id` = ?");
@@ -7878,7 +7878,7 @@ if(preg_match('/approveRenewAcc(.*)/',$data,$match) && ($from_id == $admin || $u
 	$stmt->execute();
 	$stmt->close();
     sendMessage(str_replace(["REMARK", "VOLUME", "DAYS"],[$remark, $volume, $days], $mainValues['renewed_config_to_user']), getMainKeys(),null,null);
-    sendMessage("✅سرویس $remark با موفقیت تمدید شد",null,null,$uid);
+    sendMessage("سرویس $remark با موفقیت تمدید شد",null,null,$uid);
     exit;
 }
 if(preg_match('/decRenewAcc(.*)/',$data,$match) && ($from_id == $admin || $userInfo['isAdmin'] == true)){
@@ -7916,7 +7916,7 @@ if(preg_match('/decRenewAcc(.*)/',$data,$match) && ($from_id == $admin || $userI
 
 
     unset($markup[count($markup)-1]);
-    $markup[] = [['text' => '❌', 'callback_data' => "dontsendanymore"]];
+    $markup[] = [['text' => '', 'callback_data' => "dontsendanymore"]];
     $keys = json_encode(['inline_keyboard'=>array_values($markup)],488);
 
     editKeys($keys);
@@ -7972,7 +7972,7 @@ if(preg_match('/payRenewWithWallet(.*)/', $data,$match)){
 
     if($userwallet < $price) {
         $needamount = $price - $userwallet;
-        alert("💡موجودی کیف پول (".number_format($userwallet)." تومان) کافی نیست لطفا به مقدار ".number_format($needamount)." تومان شارژ کنید ",true);
+        alert("موجودی کیف پول (".number_format($userwallet)." تومان) کافی نیست لطفا به مقدار ".number_format($needamount)." تومان شارژ کنید ",true);
         exit;
     }
 
@@ -7994,7 +7994,7 @@ if(preg_match('/payRenewWithWallet(.*)/', $data,$match)){
     }
 
 	if(is_null($response)){
-		alert('🔻مشکل فنی در اتصال به سرور. لطفا به مدیریت اطلاع بدید',true);
+		alert('مشکل فنی در اتصال به سرور. لطفا به مدیریت اطلاع بدید',true);
 		exit;
 	}
 	$stmt = $connection->prepare("UPDATE `orders_list` SET `expire_date` = ?, `notif` = 0 WHERE `id` = ?");
@@ -8011,10 +8011,10 @@ if(preg_match('/payRenewWithWallet(.*)/', $data,$match)){
 	$stmt->bind_param("ii", $price, $from_id);
 	$stmt->execute();
 	$stmt->close();
-    editText($message_id, "✅سرویس $remark با موفقیت تمدید شد",getMainKeys());
+    editText($message_id, "سرویس $remark با موفقیت تمدید شد",getMainKeys());
     $keys = json_encode(['inline_keyboard'=>[
         [
-            ['text'=>"به به تمدید 😍",'callback_data'=>"wizwizch"]
+            ['text'=>"به به تمدید •",'callback_data'=>"wizwizch"]
             ],
         ]]);
     $msg = str_replace(['TYPE', "USER-ID", "USERNAME", "NAME", "PRICE", "REMARK", "VOLUME", "DAYS"],['کیف پول', $from_id, $username, $first_name, $price, $remark, $volume, $days], $mainValues['renew_account_request_message']);
@@ -8047,7 +8047,7 @@ if(preg_match('/switchLocation(.+)_(.+)_(.+)_(.+)/', $data,$match)){
     }
     $keyboard = array_chunk($keyboard,2);
     $keyboard[] = [['text' => $buttonValues['back_button'], 'callback_data' => "mainMenu"]];
-    editText($message_id, ' 📍 لطفا برای تغییر لوکیشن سرویس فعلی, یکی از سرورها را انتخاب کنید👇',json_encode([
+    editText($message_id, '  لطفا برای تغییر لوکیشن سرویس فعلی, یکی از سرورها را انتخاب کنید',json_encode([
             'inline_keyboard' => $keyboard
         ]));
 }
@@ -8068,7 +8068,7 @@ if($data=="giftVolumeAndDay" && ($from_id == $admin || $userInfo['isAdmin'] == t
     }
     $keyboard = array_chunk($keyboard,2);
     $keyboard[] = [['text' => $buttonValues['back_button'], 'callback_data' => "managePanel"]];
-    editText($message_id, ' 📍 لطفا برای هدیه دادن, یکی از سرورها را انتخاب کنید👇',json_encode([
+    editText($message_id, '  لطفا برای هدیه دادن, یکی از سرورها را انتخاب کنید',json_encode([
             'inline_keyboard' => $keyboard
         ]));
 }
@@ -8125,7 +8125,7 @@ if(preg_match('/switchLocation(.+)_(.+)_(.+)_(.+)/', $data,$match)){
     }
     $keyboard = array_chunk($keyboard,2);
     $keyboard[] = [['text' => $buttonValues['back_button'], 'callback_data' => "mainMenu"]];
-    editText($message_id, ' 📍 لطفا برای تغییر لوکیشن سرویس فعلی, یکی از سرورها را انتخاب کنید👇',json_encode([
+    editText($message_id, '  لطفا برای تغییر لوکیشن سرویس فعلی, یکی از سرورها را انتخاب کنید',json_encode([
             'inline_keyboard' => $keyboard
         ]));
 }
@@ -8194,7 +8194,7 @@ if(preg_match('/switchServer(.+)_(.+)/',$data,$match)){
     if($inbound_id > 0) {
         $remove_response = deleteClient($server_id, $inbound_id, $uuid);
 		if(is_null($remove_response)){
-			alert('🔻اتصال به سرور برقرار نیست. لطفا به مدیریت اطلاع بدید',true);
+			alert('اتصال به سرور برقرار نیست. لطفا به مدیریت اطلاع بدید',true);
 			exit;
 		}
         if($remove_response){
@@ -8238,15 +8238,15 @@ if(preg_match('/switchServer(.+)_(.+)/',$data,$match)){
             
             $response = addInboundAccount($sid, '', $inbound_id, 1, $newRemark, 0, 1, $newArr); 
             if(is_null($response)){
-                alert('🔻اتصال به سرور برقرار نیست. لطفا به مدیریت اطلاع بدید',true);
+                alert('اتصال به سرور برقرار نیست. لطفا به مدیریت اطلاع بدید',true);
                 exit;
             }
 			if($response == "inbound not Found"){
-                alert("🔻سطر (inbound) با آیدی $inbound_id در این سرور یافت نشد. لطفا به مدیریت اطلاع بدید",true);
+                alert("سطر (inbound) با آیدی $inbound_id در این سرور یافت نشد. لطفا به مدیریت اطلاع بدید",true);
                 exit;
             }
 			if(!$response->success){
-				alert('🔻خطا در ساخت کانفیگ. لطفا به مدیریت اطلاع بدید',true);
+				alert('خطا در ساخت کانفیگ. لطفا به مدیریت اطلاع بدید',true);
 				exit;
 			}
 			$vray_link = getConnectionLink($sid, $uniqid, $protocol, $newRemark, $port, $netType, $inbound_id);
@@ -8255,7 +8255,7 @@ if(preg_match('/switchServer(.+)_(.+)/',$data,$match)){
     }else{
         $response = deleteInbound($server_id, $uuid);
 		if(is_null($response)){
-			alert('🔻اتصال به سرور برقرار نیست. لطفا به مدیریت اطلاع بدید',true);
+			alert('اتصال به سرور برقرار نیست. لطفا به مدیریت اطلاع بدید',true);
 			exit;
 		}
         if($response){
@@ -8319,7 +8319,7 @@ if(preg_match('/switchServer(.+)_(.+)/',$data,$match)){
     }
     $keyboard = array_chunk($keyboard,2);
     $keyboard[] = [['text'=>$buttonValues['back_to_main'],'callback_data'=>"mainMenu"]];
-    $msg = " 📍لوکیشن سرویس $remark به $server_title با ریمارک $newRemark تغییر یافت.\n لطفا برای مشاهده مشخصات, روی آن بزنید👇";
+    $msg = " لوکیشن سرویس $remark به $server_title با ریمارک $newRemark تغییر یافت.\n لطفا برای مشاهده مشخصات, روی آن بزنید";
     
     editText($message_id, $msg,json_encode([
             'inline_keyboard' => $keyboard
@@ -8418,15 +8418,15 @@ elseif(preg_match('/^yesDeleteConfig(\d+)/',$data,$match)){
         ]));
         
 sendMessage("
-🔋|💰 حذف کانفیگ
+•| حذف کانفیگ
 
-▫️آیدی کاربر: $from_id
-👨‍💼اسم کاربر: $first_name
-⚡️ نام کاربری: $username
-🎈 نام سرویس: $remark
-🔋حجم سرویس: $volume گیگ
-⏰ مدت زمان سرویس: $days روز
-❌ حجم باقی مانده: $leftMb
+•آیدی کاربر: $from_id
+•اسم کاربر: $first_name
+• نام کاربری: $username
+• نام سرویس: $remark
+•حجم سرویس: $volume گیگ
+• مدت زمان سرویس: $days روز
+ حجم باقی مانده: $leftMb
 📆 روز باقیمانده: $expiryDay روز
 ",null,"html", $admin);
     exit();
@@ -8730,11 +8730,11 @@ if(preg_match('/approveIncreaseDay(.*)/',$data,$match) && ($from_id == $admin ||
         $stmt->bind_param("iiisii", $uid, $server_id, $inbound_id, $remark, $price, $time);
         $stmt->execute();
         $stmt->close();
-        $markup[] = [['text' => '✅', 'callback_data' => "dontsendanymore"]];
+        $markup[] = [['text' => '', 'callback_data' => "dontsendanymore"]];
         $keys = json_encode(['inline_keyboard'=>array_values($markup)],488);
     
         editKeys($keys);
-        sendMessage("✅$volume روز به مدت زمان سرویس شما اضافه شد",null,null,$uid);
+        sendMessage("$volume روز به مدت زمان سرویس شما اضافه شد",null,null,$uid);
     }else {
         alert("مشکل فنی در ارتباط با سرور. لطفا سلامت سرور را بررسی کنید",true);
         exit;
@@ -8791,7 +8791,7 @@ if(preg_match('/payIncraseDayWithWallet(.*)/', $data,$match)){
 
     if($userwallet < $price) {
         $needamount = $price - $userwallet;
-        alert("💡موجودی کیف پول (".number_format($userwallet)." تومان) کافی نیست لطفا به مقدار ".number_format($needamount)." تومان شارژ کنید ",true);
+        alert("موجودی کیف پول (".number_format($userwallet)." تومان) کافی نیست لطفا به مقدار ".number_format($needamount)." تومان شارژ کنید ",true);
         exit;
     }
 
@@ -8823,22 +8823,22 @@ if(preg_match('/payIncraseDayWithWallet(.*)/', $data,$match)){
         $stmt->bind_param("ii", $price, $from_id);
         $stmt->execute();
         $stmt->close();
-        editText($message_id, "✅$volume روز به مدت زمان سرویس شما اضافه شد",getMainKeys());
+        editText($message_id, "$volume روز به مدت زمان سرویس شما اضافه شد",getMainKeys());
         
         $keys = json_encode(['inline_keyboard'=>[
             [
-                ['text'=>"اخیش یکی زمان زد 😁",'callback_data'=>"wizwizch"]
+                ['text'=>"تمدید زمان",'callback_data'=>"wizwizch"]
                 ],
             ]]);
         sendMessage("
-🔋|💰 افزایش زمان با ( کیف پول )
+•| افزایش زمان با ( کیف پول )
 
-▫️آیدی کاربر: $from_id
-👨‍💼اسم کاربر: $first_name
-⚡️ نام کاربری: $username
-🎈 نام سرویس: $remark
-⏰ مدت افزایش: $volume روز
-💰قیمت: $price تومان
+•آیدی کاربر: $from_id
+•اسم کاربر: $first_name
+• نام کاربری: $username
+• نام سرویس: $remark
+• مدت افزایش: $volume روز
+قیمت: $price تومان
 ⁮⁮ ⁮⁮
         ",$keys,"html", $admin);
 
@@ -8937,7 +8937,7 @@ if(preg_match('/increaseVolumePlan(?<orderId>.+)_(?<volumeId>.+)/',$data,$match)
     if($botState['zarinpal'] == "on") $keyboard[] = [['text' => $buttonValues['zarinpal_gateway'],  'url' => $botUrl . "pay/?zarinpal&hash_id=" . $hash_id]];
     if($botState['nextpay'] == "on") $keyboard[] = [['text' => $buttonValues['nextpay_gateway'],  'url' => $botUrl . "pay/?nextpay&hash_id=" . $hash_id]];
     if($botState['weSwapState'] == "on") $keyboard[] = [['text' => $buttonValues['weswap_gateway'],  'callback_data' => "payWithWeSwap" . $hash_id]];
-    if($botState['walletState'] == "on") $keyboard[] = [['text' => "💰پرداخت با موجودی  " . $planprice,  'callback_data' => "payIncraseWithWallet$hash_id"]];
+    if($botState['walletState'] == "on") $keyboard[] = [['text' => "پرداخت با موجودی  " . $planprice,  'callback_data' => "payIncraseWithWallet$hash_id"]];
     if($botState['tronWallet'] == "on") $keyboard[] = [['text' => $buttonValues['tron_gateway'],  'callback_data' => "payWithTronWallet" . $hash_id]];
 
     $keyboard[] = [['text'=>$buttonValues['cancel'], 'callback_data'=> "mainMenu"]];
@@ -9074,11 +9074,11 @@ if(preg_match('/approveIncreaseVolume(.*)/',$data,$match) && ($from_id == $admin
         $stmt->execute();
         $stmt->close();
         unset($markup[count($markup)-1]);
-        $markup[] = [['text' => '✅', 'callback_data' => "dontsendanymore"]];
+        $markup[] = [['text' => '', 'callback_data' => "dontsendanymore"]];
         $keys = json_encode(['inline_keyboard'=>array_values($markup)],488);
     
         editKeys($keys);
-        sendMessage("✅$volume گیگ به حجم سرویس شما اضافه شد",null,null,$uid);
+        sendMessage("$volume گیگ به حجم سرویس شما اضافه شد",null,null,$uid);
     }else {
         alert("مشکل فنی در ارتباط با سرور. لطفا سلامت سرور را بررسی کنید",true);
         exit;
@@ -9122,7 +9122,7 @@ if(preg_match('/decIncreaseVolume(.*)/',$data,$match) && ($from_id == $admin || 
 
     $acctxt = '';
     editKeys(json_encode(['inline_keyboard'=>[
-		    [['text'=>"لغو شد ❌",'callback_data'=>"wizwizch"]]
+		    [['text'=>"لغو شد ",'callback_data'=>"wizwizch"]]
 		    ]]));
     
     sendMessage("افزایش حجم $volume گیگ اشتراک $remark لغو شد",null,null,$uid);
@@ -9165,7 +9165,7 @@ if(preg_match('/decIncreaseDay(.*)/',$data,$match) && ($from_id == $admin || $us
 
     $acctxt = '';
     editKeys(json_encode(['inline_keyboard'=>[
-		    [['text'=>"لغو شد ❌",'callback_data'=>"wizwizch"]]
+		    [['text'=>"لغو شد ",'callback_data'=>"wizwizch"]]
 		    ]]));
     
     sendMessage("افزایش زمان $volume روز اشتراک $remark لغو شد",null,null,$uid);
@@ -9215,7 +9215,7 @@ if(preg_match('/payIncraseWithWallet(.*)/', $data,$match)){
 
     if($userwallet < $price) {
         $needamount = $price - $userwallet;
-        alert("💡موجودی کیف پول (".number_format($userwallet)." تومان) کافی نیست لطفا به مقدار ".number_format($needamount)." تومان شارژ کنید ",true);
+        alert("موجودی کیف پول (".number_format($userwallet)." تومان) کافی نیست لطفا به مقدار ".number_format($needamount)." تومان شارژ کنید ",true);
         exit;
     }
     
@@ -9246,21 +9246,21 @@ if(preg_match('/payIncraseWithWallet(.*)/', $data,$match)){
         $stmt->close();
         $keys = json_encode(['inline_keyboard'=>[
             [
-                ['text'=>"اخیش یکی حجم زد 😁",'callback_data'=>"wizwizch"]
+                ['text'=>"تمدید زمان",'callback_data'=>"wizwizch"]
                 ],
             ]]);
         sendMessage("
-🔋|💰 افزایش حجم با ( کیف پول )
+•| افزایش حجم با ( کیف پول )
 
-▫️آیدی کاربر: $from_id
-👨‍💼اسم کاربر: $first_name
-⚡️ نام کاربری: $username
-🎈 نام سرویس: $remark
-⏰ مدت افزایش: $volume گیگ
-💰قیمت: $price تومان
+•آیدی کاربر: $from_id
+•اسم کاربر: $first_name
+• نام کاربری: $username
+• نام سرویس: $remark
+• مدت افزایش: $volume گیگ
+قیمت: $price تومان
 ⁮⁮ ⁮⁮
         ",$keys,"html", $admin);
-        editText($message_id, "✅$volume گیگ به حجم سرویس شما اضافه شد",getMainKeys());exit;
+        editText($message_id, "$volume گیگ به حجم سرویس شما اضافه شد",getMainKeys());exit;
         
 
     }else {
@@ -9276,7 +9276,7 @@ if(($data=='categoriesSetting' || preg_match('/^nextCategoryPage(\d+)/',$data,$m
     if(isset($match[1])) $keys = getCategoriesKeys($match[1]);
     else $keys = getCategoriesKeys();
     
-    editText($message_id,"☑️ مدیریت دسته ها:", $keys);
+    editText($message_id,"• مدیریت دسته ها:", $keys);
 }
 if($data=='addNewCategory' and (($from_id == $admin || $userInfo['isAdmin'] == true))){
     setUser($data);
@@ -9306,7 +9306,7 @@ if(preg_match('/^addNewCategory/',$userInfo['step']) and $text!=$buttonValues['c
         $stmt->close();
 
 
-        $msg = 'یه دسته بندی جدید برات ثبت کردم 🙂☑️';
+        $msg = 'یه دسته بندی جدید برات ثبت کردم •';
         sendMessage($msg,$removeKeyboard);
         sendMessage($mainValues['reached_main_menu'],getCategoriesKeys());
     }
@@ -9317,7 +9317,7 @@ if(preg_match('/^wizwizcategorydelete(\d+)_(\d+)/',$data, $match) and ($from_id 
     $stmt->execute();
     $stmt->close();
 
-    alert("دسته بندی رو برات حذفش کردم ☹️☑️");
+    alert("دسته بندی رو برات حذفش کردم ☹️•");
     
     $stmt = $connection->prepare("SELECT * FROM `server_categories` WHERE `active`=1 AND `parent`=0");
     $stmt->execute();
@@ -9325,7 +9325,7 @@ if(preg_match('/^wizwizcategorydelete(\d+)_(\d+)/',$data, $match) and ($from_id 
     $stmt->close();
 
     $keys = getCategoriesKeys($match[2]);
-    editText($message_id,"☑️ مدیریت دسته ها:", $keys);
+    editText($message_id,"• مدیریت دسته ها:", $keys);
 }
 if(preg_match('/^wizwizcategoryedit/',$data) and ($from_id == $admin || $userInfo['isAdmin'] == true) && $text != $buttonValues['cancel']){
     setUser($data);
@@ -9338,16 +9338,16 @@ if(preg_match('/wizwizcategoryedit(\d+)_(\d+)/',$userInfo['step'], $match) && ($
     $stmt->execute();
     $stmt->close();
 
-    sendMessage("با موفقیت برات تغییر دادم ☺️☑️");
+    sendMessage("با موفقیت برات تغییر دادم ☺️•");
     setUser();
     
-    sendMessage("☑️ مدیریت دسته ها:", getCategoriesKeys($match[2]));
+    sendMessage("• مدیریت دسته ها:", getCategoriesKeys($match[2]));
 }
 if(($data=='serversSetting' || preg_match('/^nextServerPage(\d+)/',$data,$match)) and ($from_id == $admin || $userInfo['isAdmin'] == true)){
     if(isset($match[1])) $keys = getServerListKeys($match[1]);
     else $keys = getServerListKeys();
     
-    editText($message_id,"☑️ مدیریت سرور ها:",$keys);
+    editText($message_id,"• مدیریت سرور ها:",$keys);
 }
 if(preg_match('/^toggleServerState(\d+)_(\d+)/',$data,$match) && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     $stmt = $connection->prepare("UPDATE `server_info` SET `state` = IF(`state` = 0,1,0) WHERE `id`=?");
@@ -9359,11 +9359,11 @@ if(preg_match('/^toggleServerState(\d+)_(\d+)/',$data,$match) && ($from_id == $a
     alert("وضعیت سرور با موفقیت تغییر کرد");
     
     $keys = getServerListKeys($match[2]);
-    editText($message_id,"☑️ مدیریت سرور ها:",$keys);
+    editText($message_id,"• مدیریت سرور ها:",$keys);
 }
 if(preg_match('/^showServerSettings(\d+)_(\d+)/',$data,$match) and ($from_id == $admin || $userInfo['isAdmin'] == true)){
     $keys = getServerConfigKeys($match[1], $match[2]);
-    editText($message_id,"☑️ مدیریت سرور ها: $cname",$keys);
+    editText($message_id,"• مدیریت سرور ها: $cname",$keys);
 }
 if(preg_match('/^changesServerIp(\d+)/',$data,$match) && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     $stmt = $connection->prepare("SELECT * FROM `server_config` WHERE `id`=?");
@@ -9387,7 +9387,7 @@ if(preg_match('/^changesServerIp(\d+)/',$userInfo['step'],$match) && ($from_id =
     setUser();
     
     $keys = getServerConfigKeys($match[1]);
-    sendMessage("☑️ مدیریت سرور ها: $cname",$keys);
+    sendMessage("• مدیریت سرور ها: $cname",$keys);
     exit();
 }
 if(preg_match('/^changePortType(\d+)/',$data,$match) && ($from_id == $admin || $userInfo['isAdmin'] == true)){
@@ -9398,7 +9398,7 @@ if(preg_match('/^changePortType(\d+)/',$data,$match) && ($from_id == $admin || $
     alert("نوعیت پورت سرور مورد نظر با موفقیت تغییر کرد");
     
     $keys = getServerConfigKeys($match[1]);
-    editText($message_id,"☑️ مدیریت سرور ها: $cname",$keys);
+    editText($message_id,"• مدیریت سرور ها: $cname",$keys);
     
     exit();
 }
@@ -9409,21 +9409,21 @@ if(preg_match('/^changeRealityState(\d+)/',$data,$match) && ($from_id == $admin 
     $stmt->close();
     
     $keys = getServerConfigKeys($match[1]);
-    editText($message_id,"☑️ مدیریت سرور ها: $cname",$keys);
+    editText($message_id,"• مدیریت سرور ها: $cname",$keys);
     
     exit();
 }
 if(preg_match('/^changeServerType(\d+)/',$data,$match) && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     editText($message_id,"
     
-🔰 نکته مهم: ( پنل x-ui خود را به آخرین نسخه آپدیت کنید ) 
+• نکته مهم: ( پنل x-ui خود را به آخرین نسخه آپدیت کنید ) 
 
 ❤️ اگر از پنل سنایی استفاده میکنید لطفا نوع پنل را ( سنایی ) انتخاب کنید
 🧡 اگر از پنل علیرضا استفاده میکنید لطفا نوع پنل را ( علیرضا ) انتخاب کنید
 💚 اگر از پنل نیدوکا استفاده میکنید لطفا نوع پنل را ( ساده ) انتخاب کنید 
 💙 اگر از پنل چینی استفاده میکنید لطفا نوع پنل را ( ساده ) انتخاب کنید 
 ⁮⁮ ⁮⁮ ⁮⁮ ⁮⁮
-📣 حتما نوع پنل را انتخاب کنید وگرنه براتون مشکل ساز میشه !
+• حتما نوع پنل را انتخاب کنید وگرنه براتون مشکل ساز میشه !
 ⁮⁮ ⁮⁮ ⁮⁮ ⁮⁮
 ",json_encode(['inline_keyboard'=>[
         [['text'=>"ساده",'callback_data'=>"chhangeServerTypenormal_" . $match[1]],['text'=>"سنایی",'callback_data'=>"chhangeServerTypesanaei_" . $match[1]]],
@@ -9439,7 +9439,7 @@ if(preg_match('/^chhangeServerType(\w+)_(\d+)/',$data,$match) && ($from_id == $a
     $stmt->close();
     
     $keys = getServerConfigKeys($match[2]);
-    editText($message_id, "☑️ مدیریت سرور ها: $cname",$keys);
+    editText($message_id, "• مدیریت سرور ها: $cname",$keys);
 }
 if(($data == "addNewMarzbanPanel" || $data=='addNewServer') and ($from_id == $admin || $userInfo['isAdmin'] == true)){
     delMessage();
@@ -9487,11 +9487,11 @@ if(preg_match('/^addServerFlag(.*)/',$userInfo['step'], $match) and $text != $bu
 
 ❕https://yourdomain.com:54321
 ❕https://yourdomain.com:54321/path
-❗️http://125.12.12.36:54321
-❗️http://125.12.12.36:54321/path
+http://125.12.12.36:54321
+http://125.12.12.36:54321/path
 
 اگر سرور مورد نظر با دامنه و ssl هست از مثال ( ❕) استفاده کنید
-اگر سرور مورد نظر با ip و بدون ssl هست از مثال ( ❗️) استفاده کنید
+اگر سرور مورد نظر با ip و بدون ssl هست از مثال ( ) استفاده کنید
 ⁮⁮ ⁮⁮ ⁮⁮ ⁮⁮
 ");
     setUser('addServerPanelUrl' . json_encode($data,JSON_UNESCAPED_UNICODE));
@@ -9521,8 +9521,8 @@ if(preg_match('/^addServerPanelUrl(.*)/',$userInfo['step'],$match) and $text != 
     نمونه: 
     91.257.142.14
     sub.domain.com
-    ❗️در صورتی که میخواید چند دامنه یا ip کانفیگ بگیرید باید زیر هم بنویسید و برای ربات بفرستین:
-        \n\n🔻برای خالی گذاشتن متن /empty را وارد کنید");
+    در صورتی که میخد چند دامنه یا ip کانفیگ بگیرید باید زیر هم بنویسید و برای ربات بفرستین:
+        \n\nبرای خالی گذاشتن متن /empty را وارد کنید");
         exit();
     }
 }
@@ -9530,28 +9530,28 @@ if(preg_match('/^addServerIp(.*)/',$userInfo['step'],$match) and $text != $butto
     $data = json_decode($match[1],true);
     $data['panel_ip'] = $text;
     setUser('addServerSni' . json_encode($data, JSON_UNESCAPED_UNICODE));
-    sendMessage( "🔅 لطفا sni پنل را وارد کنید\n\n🔻برای خالی گذاشتن متن /empty را وارد کنید");
+    sendMessage( "🔅 لطفا sni پنل را وارد کنید\n\nبرای خالی گذاشتن متن /empty را وارد کنید");
     exit();
 }
 if(preg_match('/^addServerSni(.*)/',$userInfo['step'],$match) and $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)) {
     $data = json_decode($match[1],true);
     $data['sni'] = $text;
     setUser('addServerHeaderType' . json_encode($data, JSON_UNESCAPED_UNICODE));
-    sendMessage( "🔅 اگر  از header type استفاده میکنید لطفا http را تایپ کنید:\n\n🔻برای خالی گذاشتن متن /empty را وارد کنید");
+    sendMessage( "🔅 اگر  از header type استفاده میکنید لطفا http را تایپ کنید:\n\nبرای خالی گذاشتن متن /empty را وارد کنید");
     exit();
 }
 if(preg_match('/^addServerHeaderType(.*)/',$userInfo['step'],$match) and $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)) {
     $data = json_decode($match[1],true);
     $data['header_type'] = $text;
     setUser('addServerRequestHeader' . json_encode($data, JSON_UNESCAPED_UNICODE));
-    sendMessage( "🔅اگر از هدر استفاده میکنید لطفا آدرس رو به این صورت Host:test.com وارد کنید و به جای test.com آدرس دلخواه بزنید:\n\n🔻برای خالی گذاشتن متن /empty را وارد کنید");
+    sendMessage( "🔅اگر از هدر استفاده میکنید لطفا آدرس رو به این صورت Host:test.com وارد کنید و به جای test.com آدرس دلخواه بزنید:\n\nبرای خالی گذاشتن متن /empty را وارد کنید");
     exit();
 }
 if(preg_match('/^addServerRequestHeader(.*)/',$userInfo['step'],$match) and $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)) {
     $data = json_decode($match[1],true);
     $data['request_header'] = $text;
     setUser('addServerResponseHeader' . json_encode($data, JSON_UNESCAPED_UNICODE));
-    sendMessage( "🔅 لطفا response header پنل را وارد کنید\n\n🔻برای خالی گذاشتن متن /empty را وارد کنید");
+    sendMessage( "🔅 لطفا response header پنل را وارد کنید\n\nبرای خالی گذاشتن متن /empty را وارد کنید");
     exit();
 }
 if(preg_match('/^addServerResponseHeader(.*)/',$userInfo['step'],$match) and $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)) {
@@ -9560,8 +9560,8 @@ if(preg_match('/^addServerResponseHeader(.*)/',$userInfo['step'],$match) and $te
     setUser('addServerSecurity' . json_encode($data, JSON_UNESCAPED_UNICODE));
     sendMessage( "🔅 لطفا security پنل را وارد کنید
 
-⚠️ توجه: برای استفاده از tls یا xtls لطفا کلمه tls یا xtls رو تایپ کنید در غیر این صورت 👇
-\n🔻برای خالی گذاشتن متن /empty را وارد کنید");
+⚠️ توجه: برای استفاده از tls یا xtls لطفا کلمه tls یا xtls رو تایپ کنید در غیر این صورت 
+\nبرای خالی گذاشتن متن /empty را وارد کنید");
 exit();
 }
 if(preg_match('/^addServerSecurity(.*)/',$userInfo['step'],$match) and $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)) {
@@ -9569,12 +9569,12 @@ if(preg_match('/^addServerSecurity(.*)/',$userInfo['step'],$match) and $text != 
     $data['security'] = $text;
     setUser('addServerTlsSetting' . json_encode($data, JSON_UNESCAPED_UNICODE));
     sendMessage("
-    🔅 لطفا tls|xtls setting پنل را وارد کنید🔻برای خالی گذاشتن متن /empty را وارد کنید 
+    🔅 لطفا tls|xtls setting پنل را وارد کنیدبرای خالی گذاشتن متن /empty را وارد کنید 
 
 ⚠️ لطفا تنظیمات سرتیفیکیت رو با دقت انجام بدید مثال:
-▫️serverName: yourdomain
-▫️certificateFile: /root/cert.crt
-▫️keyFile: /root/private.key
+•serverName: yourdomain
+•certificateFile: /root/cert.crt
+•keyFile: /root/private.key
 \n
 "
         .'<b>tls setting:</b> <code>{"serverName": "","certificates": [{"certificateFile": "","keyFile": ""}]}</code>' . "\n"
@@ -9600,7 +9600,7 @@ if(preg_match('/^addServerPanelUser(.*)/',$userInfo['step'],$match) and $text !=
 exit();
 }
 if(preg_match('/^addServerPanePassword(.*)/',$userInfo['step'],$match) and $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)){
-    sendMessage("⏳ در حال ورود به اکانت ...");
+    sendMessage(" در حال ورود به اکانت ...");
     $data = json_decode($match[1],true);
     $title = $data['title'];
     $ucount = $data['ucount'];
@@ -9672,7 +9672,7 @@ if(preg_match('/^addServerPanePassword(.*)/',$userInfo['step'],$match) and $text
         sendMessage( "
 ⚠️ با خطا مواجه شدی ! 
 
-برای رفع این مشکل روی لینک زیر بزن و ویس رو با دقت گوش کن 👇
+برای رفع این مشکل روی لینک زیر بزن و ویس رو با دقت گوش کن 
 
 ⛔️🔗 https://t.me/wizwizch/186
 
@@ -9703,18 +9703,18 @@ if(preg_match('/^addServerPanePassword(.*)/',$userInfo['step'],$match) and $text
         $stmt->close();
         
         $keys = getServerListKeys();
-        sendMessage("☑️ مدیریت سرور ها",$keys);
+        sendMessage("• مدیریت سرور ها",$keys);
     }else{
         sendMessage("
     
-🔰 نکته مهم: ( پنل x-ui خود را به آخرین نسخه آپدیت کنید ) 
+• نکته مهم: ( پنل x-ui خود را به آخرین نسخه آپدیت کنید ) 
 
 ❤️ اگر از پنل سنایی استفاده میکنید لطفا نوع پنل را ( سنایی ) انتخاب کنید
 🧡 اگر از پنل علیرضا استفاده میکنید لطفا نوع پنل را ( علیرضا ) انتخاب کنید
 💚 اگر از پنل نیدوکا استفاده میکنید لطفا نوع پنل را ( ساده ) انتخاب کنید 
 💙 اگر از پنل چینی استفاده میکنید لطفا نوع پنل را ( ساده ) انتخاب کنید 
 ⁮⁮ ⁮⁮ ⁮⁮ ⁮⁮
-📣 حتما نوع پنل را انتخاب کنید وگرنه براتون مشکل ساز میشه !
+• حتما نوع پنل را انتخاب کنید وگرنه براتون مشکل ساز میشه !
 ⁮⁮ ⁮⁮ ⁮⁮ ⁮⁮
     ",json_encode(['inline_keyboard'=>[
             [['text'=>"ساده",'callback_data'=>"chhangeServerTypenormal_" . $rowId],['text'=>"سنایی",'callback_data'=>"chhangeServerTypesanaei_" . $rowId]],
@@ -9745,7 +9745,7 @@ if(preg_match('/^editServerPaneUser(.*)/',$userInfo['step'],$match) && $text != 
     exit();
 }
 if(preg_match('/^editServerPanePassword(.*)/',$userInfo['step'],$match) and $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)){
-    sendMessage("⏳ در حال ورود به اکانت ...");
+    sendMessage(" در حال ورود به اکانت ...");
     $data = json_decode($match[1],true);
 
     $rowId = $data['rowId'];
@@ -9820,7 +9820,7 @@ if(preg_match('/^editServerPanePassword(.*)/',$userInfo['step'],$match) and $tex
         sendMessage("اطلاعات ورود سرور با موفقیت عوض شد",$removeKeyboard);
     }
     $keys = getServerConfigKeys($rowId);
-    sendMessage('☑️ مدیریت سرور ها:',$keys);
+    sendMessage('• مدیریت سرور ها:',$keys);
     setUser();
 }
 if(preg_match('/^wizwizdeleteserver(\d+)/',$data,$match) and ($from_id == $admin || $userInfo['isAdmin'] == true)){
@@ -9834,12 +9834,12 @@ if(preg_match('/^wizwizdeleteserver(\d+)/',$data,$match) and ($from_id == $admin
     $stmt->execute();
     $stmt->close();
 
-    alert("🙂 سرور رو چرا حذف کردی اخه ...");
+    alert(" سرور رو چرا حذف کردی اخه ...");
     
 
     $keys = getServerListKeys();
     if($keys == null) editText($message_id,"موردی یافت نشد");
-    else editText($message_id,"☑️ مدیریت سرور ها:",$keys);
+    else editText($message_id,"• مدیریت سرور ها:",$keys);
 }
 if(preg_match('/^editServer(\D+)(\d+)/',$data,$match) && $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     switch($match[1]){
@@ -9861,7 +9861,7 @@ if(preg_match('/^editServer(\D+)(\d+)/',$data,$match) && $text != $buttonValues[
             break;
     }
     delMessage();
-    sendMessage("🔘|لطفا " . $txt . " جدید را وارد کنید" . $end,$cancelKey);
+    sendMessage("|لطفا " . $txt . " جدید را وارد کنید" . $end,$cancelKey);
     setUser($data);
     exit();
 }
@@ -9903,7 +9903,7 @@ if(preg_match('/^editServer(\D+)(\d+)/',$userInfo['step'],$match) && $text != $b
 if(preg_match('/^editsServer(\D+)(\d+)/',$data,$match) && $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     $txt = str_replace("_", " ", $match[1]);
     delMessage();
-    sendMessage("🔘|لطفا " . $txt . " جدید را وارد کنید\nبرای خالی کردن متن /empty را وارد کنید",$cancelKey);
+    sendMessage("|لطفا " . $txt . " جدید را وارد کنید\nبرای خالی کردن متن /empty را وارد کنید",$cancelKey);
     setUser($data);
     exit();
 }
@@ -9962,7 +9962,7 @@ if(preg_match('/^editServer(\D+)(\d+)/',$data,$match) && $text != $buttonValues[
             break;
     }
     delMessage();
-    sendMessage("🔘|لطفا " . $txt . " جدید را وارد کنید",$cancelKey);
+    sendMessage("|لطفا " . $txt . " جدید را وارد کنید",$cancelKey);
     setUser($data);
 }
 if(preg_match('/^editServer(\D+)(\d+)/',$userInfo['step'],$match) && $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)){
@@ -9996,7 +9996,7 @@ if($data=="discount_codes" && ($from_id == $admin || $userInfo['isAdmin'] == tru
 }
 if($data=="addDiscountCode" && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     delMessage();
-    sendMessage("🔘|لطفا مقدار تخفیف را وارد کنید\nبرای درصد علامت % را در کنار عدد وارد کنید در غیر آن مقدار تخفیف به تومان محاسبه میشود",$cancelKey);
+    sendMessage("|لطفا مقدار تخفیف را وارد کنید\nبرای درصد علامت % را در کنار عدد وارد کنید در غیر آن مقدار تخفیف به تومان محاسبه میشود",$cancelKey);
     setUser($data);
 }
 if($userInfo['step'] == "addDiscountCode" && $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)){
@@ -10007,8 +10007,8 @@ if($userInfo['step'] == "addDiscountCode" && $text != $buttonValues['cancel'] &&
     if(is_numeric($text)){
         $dInfo['amount'] = $text;
         setUser("addDiscountDate" . json_encode($dInfo,JSON_UNESCAPED_UNICODE));
-        sendMessage("🔘|لطفا مدت زمان این تخفیف را به روز وارد کنید\nبرای نامحدود بودن 0 وارد کنید");
-    }else sendMessage("🔘|لطفا فقط عدد و یا درصد بفرستید");
+        sendMessage("|لطفا مدت زمان این تخفیف را به روز وارد کنید\nبرای نامحدود بودن 0 وارد کنید");
+    }else sendMessage("|لطفا فقط عدد و یا درصد بفرستید");
 }
 if(preg_match('/^addDiscountDate(.*)/',$userInfo['step'],$match) && $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     if(is_numeric($text)){
@@ -10016,8 +10016,8 @@ if(preg_match('/^addDiscountDate(.*)/',$userInfo['step'],$match) && $text != $bu
         $dInfo['date'] = $text != 0?time() + ($text * 24 * 60 * 60):0;
         
         setUser("addDiscountCount" . json_encode($dInfo,JSON_UNESCAPED_UNICODE));
-        sendMessage("🔘|لطفا تعداد استفاده این تخفیف را وارد کنید\nبرای نامحدود بودن 0 وارد کنید");
-    }else sendMessage("🔘|لطفا فقط عدد بفرستید");
+        sendMessage("|لطفا تعداد استفاده این تخفیف را وارد کنید\nبرای نامحدود بودن 0 وارد کنید");
+    }else sendMessage("|لطفا فقط عدد بفرستید");
 }
 if(preg_match('/^addDiscountCount(.*)/',$userInfo['step'],$match) && $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     if(is_numeric($text)){ 
@@ -10026,7 +10026,7 @@ if(preg_match('/^addDiscountCount(.*)/',$userInfo['step'],$match) && $text != $b
         
         setUser('addDiscountCanUse' . json_encode($dInfo,JSON_UNESCAPED_UNICODE));
         sendMessage("لطفا تعداد استفاده هر یوزر را وارد کنید");
-    }else sendMessage("🔘|لطفا فقط عدد بفرستید");
+    }else sendMessage("|لطفا فقط عدد بفرستید");
 }
 if(preg_match('/^addDiscountCanUse(.*)/',$userInfo['step'],$match) && $text != $buttonValues['cancel'] && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     if(is_numeric($text)){ 
@@ -10043,7 +10043,7 @@ if(preg_match('/^addDiscountCanUse(.*)/',$userInfo['step'],$match) && $text != $
         sendMessage("کد تخفیف جدید (<code>$hashId</code>) با موفقیت ساخته شد",$removeKeyboard,"HTML");
         setUser();
         sendMessage("مدیریت کد های تخفیف",getDiscountCodeKeys());
-    }else sendMessage("🔘|لطفا فقط عدد بفرستید");
+    }else sendMessage("|لطفا فقط عدد بفرستید");
 }
 if(preg_match('/^delDiscount(\d+)/',$data,$match) && ($from_id == $admin || $userInfo['isAdmin'] == true)){
     $stmt = $connection->prepare("DELETE FROM `discounts` WHERE `id` = ?");
@@ -10061,8 +10061,8 @@ if($data == "managePanel" and (($from_id == $admin || $userInfo['isAdmin'] == tr
     
     setUser();
     $msg = "
-👤 عزیزم به بخش مدیریت خوشومدی 
-🤌 هرچی نیاز داشتی میتونی اینجا طبق نیازهات اضافه و تغییر بدی ، عزیزم $first_name جان اگه از فروش ربات درآمد داری از من حمایت کن تا پروژه همیشه آپدیت بمونه !
+•  به بخش مدیریت خوشومدی 
+🤌 هرچی نیاز داشتی میتونی اینجا طبق نیازهات اضافه و تغییر بدی ،  $first_name جان اگه از فروش ربات درآمد داری از من حمایت کن تا پروژه همیشه آپدیت بمونه !
 
 🆔 @wizwizch
 
@@ -10088,7 +10088,7 @@ if($data == 'reciveApplications') {
 🔸می توانید به راحتی همه فایل ها را (به صورت رایگان) دریافت کنید
 📌 شما میتوانید برای راهنمای اتصال به سرویس کانال رسمی مارا دنبال کنید و همچنین از دکمه های زیر میتوانید برنامه های مورد نیاز هر سیستم عامل را دانلود کنید
 
-✅ پیشنهاد ما برنامه V2rayng است زیرا کار با آن ساده است و برای تمام سیستم عامل ها قابل اجرا است، میتوانید به بخش سیستم عامل مورد نظر مراجعه کنید و لینک دانلود را دریافت کنید
+ پیشنهاد ما برنامه V2rayng است زیرا کار با آن ساده است و برای تمام سیستم عامل ها قابل اجرا است، میتوانید به بخش سیستم عامل مورد نظر مراجعه کنید و لینک دانلود را دریافت کنید
 ", json_encode(['inline_keyboard'=>$keyboard]));
 }
 if ($text == $buttonValues['cancel']) {
