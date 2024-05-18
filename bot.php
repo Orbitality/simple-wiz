@@ -1750,8 +1750,6 @@ if(preg_match('/havePaiedWeSwap(.*)/',$data,$match)) {
 
 if($botState['subLinkState'] == "on") $acc_text .= "
 
-• Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
-
 
  subscription : <code>$subLink</code>
         
@@ -2986,8 +2984,6 @@ if(preg_match('/payCustomWithWallet(.*)/',$data, $match)){
 • config : <code>$link</code>":"");
 if($botState['subLinkState'] == "on") $acc_text .= "
 
-• Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
-
 
  subscription : <code>$subLink</code>"; 
     
@@ -3391,8 +3387,6 @@ if(preg_match('/accCustom(.*)/',$data, $match) and $text != $buttonValues['cance
 • config : <code>$vray_link</code>":"");
 if($botState['subLinkState'] == "on") $acc_text .= "
 
-• Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
-
 \n subscription : <code>$subLink</code>";
     
         $file = RandomString() .".png";
@@ -3708,7 +3702,6 @@ if(preg_match('/payWithWallet(.*)/',$data, $match)){
 • config : <code>$link</code>":"");
 if($botState['subLinkState'] == "on") $acc_text .= "
 
-• Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
 
 \n subscription : <code>$subLink</code>";
             
@@ -4237,7 +4230,6 @@ if(preg_match('/accept(.*)/',$data, $match) and $text != $buttonValues['cancel']
 • config : <code>$link</code>":"");
 if($botState['subLinkState'] == "on") $acc_text .= "
 
-• Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
 
 \n subscription : <code>$subLink</code>";
             
@@ -5702,8 +5694,6 @@ if(preg_match('/freeTrial(\d+)/',$data,$match)) {
 " . ($botState['configLinkState'] != "off" && $serverType != "marzban"?"
 • config : <code>$link</code>":"");
 if($botState['subLinkState'] == "on") $acc_text .= "
-
-• Volume web: <code> $botUrl"."search.php?id=".$uniqid."</code>
 
 \n subscription : <code>$subLink</code>";
     
