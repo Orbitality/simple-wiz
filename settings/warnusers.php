@@ -84,12 +84,35 @@ if($orders){
                 }
                 $totalLeft = $total - $up - $down;
             }
-            if(!$found) continue;
+            if(!$found){
+                if($logedIn){
+                    $stmt = $connection->prepare("DELETE FROM `orders_list` WHERE `id` = ?");
+                    $stmt->bind_param('i', $id);
+                    $stmt->execute();
+                    $stmt->close();
+                    
+                    $stmt = $connection->prepare("SELECT * FROM `server_info` WHERE `id` = ?");
+                    $stmt->bind_param('i', $server_id);
+                    $stmt->execute();
+                    $serverTitle = $stmt->get_result()->fetch_assoc()['title'];
+                    $stmt->close();
+                    
+                    $stmt = $connection->prepare("SELECT * FROM `users` WHERE `userid` = ?");
+                    $stmt->bind_param('i', $from_id);
+                    $stmt->execute();
+                    $serverInfo = $stmt->get_result()->fetch_assoc();
+                    $stmt->close();
+                    $userName = $serverInfo['name'];
+                    
+                    sendMessage( "کانفیگ $remark مربوط به کاربر $userName ($from_id) توی سرور $serverTitle نبود و از دیتابیس حذف شد", null, null, $admin);
+                }
+                continue;
+            }
             
-            $leftgb = round( () / 1073741824, 2);
+            $leftgb = round( ($totalLeft) / 1073741824, 2);
             if($expiryTime != null && $total != null){
                 $send = "";
-                if($expiryTime < time() + 86400000) $send = "روز"; elseif($leftgb < 1) $send = "گیگ";
+                if($expiryTime < time() + 86400) $send = "روز"; elseif($leftgb < 1) $send = "گیگ";
                 if($send != ""){  
                     $msg = "  کاربر گرامی، 
         از سرویس اشتراک $remark تنها (۱ $send) باقی مانده است. میتواند از قسمت خرید های من سرویس فعلی خود را تمدید کنید یا سرویس جدید خریداری کنید.";
